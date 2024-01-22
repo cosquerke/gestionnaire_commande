@@ -32,16 +32,19 @@ public class Appli {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
         	String ligne;
             boolean premiereLigne = true;
+            boolean end = false;
             
             // Lire chaque ligne du fichier
-            while ((ligne = br.readLine()) != null || ((ligne = br.readLine()) != "")) {
+            while ((ligne = br.readLine()) != null || !end) {
                 if (premiereLigne) {
                     premiereLigne = false;
                     continue; // Passer à la prochaine itération sans traiter cette ligne
                 }
                 
                 String[] champs = ligne.split(";");
-                System.out.println(Integer.parseInt(champs[0])+" : "+Integer.parseInt(champs[8]));
+                if(champs[0].length() == 0) {
+                	end = true;
+                }else {
                 // Construire un objet Commande et l'ajouter à la liste
                 commandes.add(new Commande(
                         Integer.parseInt(champs[0]),
@@ -60,7 +63,7 @@ public class Appli {
                         champs[13]
                 ));
                 
-                commandes.get(commandes.size()-1).toString();
+                }
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
@@ -83,10 +86,9 @@ public class Appli {
 		
 		List<Commande> commandes = lireCommandesDepuisCSV("src/Appli/data/commandes.csv");
 
-        // Faites ce que vous souhaitez avec la liste d'objets Commande
-    /*    for (Commande commande : commandes) {
+		for (Commande commande : commandes) {
             System.out.println(commande.toString());
-        }*/
+        }
 
 		
 		
