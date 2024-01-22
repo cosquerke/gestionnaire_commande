@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import interfaces.IProductionCost;
+import interfaces.ICost;
 
 public class loader {
 	private static loader loader_singleton;
@@ -27,11 +27,11 @@ public class loader {
 		return loader_singleton;
 	}
 	
-	public IProductionCost getCommande() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, IOException {
+	public ICost getCommande() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, IOException {
 		String chemin_fichier_classe = "src/Appli/data/classes.txt";
 		
 		List <String> liste_classes = Files.readAllLines(Paths.get(chemin_fichier_classe));
 			
-		return (IProductionCost) Class.forName(liste_classes.get(0)).getConstructor().newInstance();
+		return (ICost) Class.forName(liste_classes.get(0)).getConstructor().newInstance();
 	}
 }

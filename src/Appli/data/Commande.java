@@ -178,6 +178,19 @@ public class Commande {
 	public void setTransportation_mode(String transportation_mode) {
 		this.transportation_mode = transportation_mode;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Commande [id=" + id + ", type=" + type + ", description=" + description + ", order_date=" + order_date
+				+ ", expedition_date=" + expedition_date + ", expected_delivery_date=" + expected_delivery_date
+				+ ", production_cost=" + production_cost + ", transportation_cost=" + transportation_cost
+				+ ", vat_fees=" + vat_fees + ", price=" + price + ", is_delivered=" + is_delivered
+				+ ", departure_country=" + departure_country + ", arrival_country=" + arrival_country
+				+ ", transportation_mode=" + transportation_mode + "]";
+	}
+	
+	
 	
 
 
