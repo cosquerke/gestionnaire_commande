@@ -1,0 +1,9 @@
+{
+  "name": "TransportationCost",
+  "description": "Calcul des couts de transport",
+  "dependencyList": [],
+  "maxInstanceNumber": 5,
+  "minInstanceNumber": 1,
+  "load": false,
+  "emplacement": "plugins.TransportationCost"
+}

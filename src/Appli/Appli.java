@@ -12,13 +12,13 @@ import java.util.List;
 
 import Appli.data.Commande;
 import interfaces.ICost;
-import loader.loader;
+import loader.Loader;
 
 public class Appli {
 	private ICost commande;
 
 	public Appli() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, IOException {
-		commande = loader.getInstance().getCommande();
+		commande = (ICost) Loader.getInstance().GetOrLoadPlugin("ProductionCost");
 	}
 
 	public void cmd(Commande c) {
@@ -87,7 +87,7 @@ public class Appli {
 		List<Commande> commandes = lireCommandesDepuisCSV("src/Appli/data/commandes.csv");
 
 		for (Commande commande : commandes) {
-            System.out.println(commande.toString());
+            //System.out.println(commande.toString());
         }
 
 		

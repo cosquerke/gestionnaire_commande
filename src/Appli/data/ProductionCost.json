@@ -1,0 +1,9 @@
+{
+  "name": "ProductionCost",
+  "description": "Calcul des couts de production",
+  "dependencyList": [],
+  "maxInstanceNumber": 5,
+  "minInstanceNumber": 1,
+  "load": false,
+  "emplacement": "plugins.ProductionCost"
+}
