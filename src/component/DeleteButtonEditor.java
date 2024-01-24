@@ -1,6 +1,6 @@
 package component;
 
-import entity.Commande;
+import Appli.data.Commande;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

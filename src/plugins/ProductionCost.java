@@ -20,7 +20,7 @@ public class ProductionCost implements ICost, IMainAppPlugin {
     @Override
     public void update_ht(Commande c) {
         Random r = new Random();
-        c.setProduction_cost(r.nextFloat());
+        c.setProduction_cost(r.nextDouble());
     }
 
     @Override
@@ -29,13 +29,13 @@ public class ProductionCost implements ICost, IMainAppPlugin {
     }
 
     @Override
-    public Float get_ht(Commande c, Float taxes) {
+    public Double get_ht(Commande c, Float taxes) {
         System.out.println(c.getProduction_cost() * (1 - taxes));
         return c.getProduction_cost() * (1 - taxes);
     }
 
     @Override
-    public Float get_ttc(Commande c, Float taxes) {
+    public Double get_ttc(Commande c, Float taxes) {
         return c.getProduction_cost();
     }
 

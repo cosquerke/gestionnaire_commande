@@ -1,6 +1,6 @@
 package loader;
 
-import entity.Commande;
+import Appli.data.Commande;
 import interfaces.CommandeLoaderInterface;
 
 import java.io.BufferedReader;

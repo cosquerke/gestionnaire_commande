@@ -11,7 +11,7 @@ public class transportationCost implements ICost {
 	public void update_ht(Commande c) {
 		// TODO Auto-generated method stub
 		Random r = new Random();
-		c.setTransportation_cost(r.nextFloat());
+		c.setTransportation_cost(r.nextDouble());
 		
 	}
 
@@ -22,13 +22,13 @@ public class transportationCost implements ICost {
 	}
 
 	@Override
-	public Float get_ht(Commande c, Float taxes) {
+	public Double get_ht(Commande c, Float taxes) {
 		// TODO Auto-generated method stub
 		return c.getTransportation_cost()*(1-taxes);
 	}
 
 	@Override
-	public Float get_ttc(Commande c, Float taxes) {
+	public Double get_ttc(Commande c, Float taxes) {
 		// TODO Auto-generated method stub
 		return c.getTransportation_cost();
 		

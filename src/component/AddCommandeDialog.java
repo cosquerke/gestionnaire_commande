@@ -1,6 +1,6 @@
 package component;
 
-import entity.Commande;
+import Appli.data.Commande;
 import util.DateFormat;
 
 import javax.swing.*;

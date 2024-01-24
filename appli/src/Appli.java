@@ -53,10 +53,10 @@ public class Appli {
                         dateFormat.parse(champs[3]),
                         dateFormat.parse(champs[4]),
                         dateFormat.parse(champs[5]),
-                        Float.parseFloat(champs[6]),
-                        Float.parseFloat(champs[7]),
-                        Integer.parseInt(champs[8]),
-                        Float.parseFloat(champs[9]),
+                        Double.parseDouble(champs[6]),
+                        Double.parseDouble(champs[7]),
+                        Double.parseDouble(champs[8]),
+                        Double.parseDouble(champs[9]),
                         Boolean.parseBoolean(champs[10]),
                         champs[11],
                         champs[12],
@@ -76,7 +76,7 @@ public class Appli {
 		// TODO Auto-generated method stub
 		Appli mon_app = new Appli();
 		
-		Commande c = new Commande(0, "IT", "Puce electronique", new Date(2024,2,2), new Date(2024,1,2), new Date(2024,1,10), (float) 10.0, (float) 1.0, 0, (float) 20.0, false, "Taiwan", "China", "Boat");
+		Commande c = new Commande(0, "IT", "Puce electronique", new Date(2024,2,2), new Date(2024,1,2), new Date(2024,1,10), 10.0, 1.0, 0.0 , 20.0, false, "Taiwan", "China", "Boat");
 		
 		
 		System.out.println(c.getProduction_cost());

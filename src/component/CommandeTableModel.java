@@ -1,6 +1,6 @@
 package component;
 
-import entity.Commande;
+import Appli.data.Commande;
 import util.DateFormat;
 
 import javax.swing.table.DefaultTableModel;
@@ -30,17 +30,17 @@ public class CommandeTableModel extends DefaultTableModel {
             case 0 -> commande.getId();
             case 1 -> commande.getType();
             case 2 -> commande.getDescription();
-            case 3 -> dateFormat.format(commande.getOrderDate());
-            case 4 -> dateFormat.format(commande.getExpeditionDate());
-            case 5 -> dateFormat.format(commande.getExpectedDeliveryDate());
-            case 6 -> commande.getProductionCost();
-            case 7 -> commande.getTransportationCost();
-            case 8 -> commande.getVatFees();
+            case 3 -> dateFormat.format(commande.getOrder_date());
+            case 4 -> dateFormat.format(commande.getExpedition_date());
+            case 5 -> dateFormat.format(commande.getExpected_delivery_date());
+            case 6 -> commande.getProduction_cost();
+            case 7 -> commande.getTransportation_cost();
+            case 8 -> commande.getVat_fees();
             case 9 -> commande.getPrice();
-            case 10 -> commande.isDelivered();
-            case 11 -> commande.getDepartureCountry();
-            case 12 -> commande.getArrivalCountry();
-            case 13 -> commande.getTransportationMode();
+            case 10 -> commande.getIs_delivered();
+            case 11 -> commande.getDeparture_country();
+            case 12 -> commande.getArrival_country();
+            case 13 -> commande.getTransportation_mode();
             case 14 -> "Supprimer";
             default -> null;
         };
@@ -75,17 +75,17 @@ public class CommandeTableModel extends DefaultTableModel {
                 }
                 case 1 -> commande.setType((String) aValue);
                 case 2 -> commande.setDescription((String) aValue);
-                case 3 -> commande.setOrderDate(dateFormat.parse((String) aValue));
-                case 4 -> commande.setExpeditionDate(dateFormat.parse((String) aValue));
-                case 5 -> commande.setExpectedDeliveryDate(dateFormat.parse((String) aValue));
-                case 6 -> commande.setProductionCost((Double) aValue);
-                case 7 -> commande.setTransportationCost((Double) aValue);
-                case 8 -> commande.setVatFees((Double) aValue);
+                case 3 -> commande.setOrder_date(dateFormat.parse((String) aValue));
+                case 4 -> commande.setExpedition_date(dateFormat.parse((String) aValue));
+                case 5 -> commande.setExpected_delivery_date(dateFormat.parse((String) aValue));
+                case 6 -> commande.setProduction_cost((Double) aValue);
+                case 7 -> commande.setTransportation_cost((Double) aValue);
+                case 8 -> commande.setVat_fees((Double) aValue);
                 case 9 -> commande.setPrice((Double) aValue);
-                case 10 -> commande.setDelivered((Boolean) aValue);
-                case 11 -> commande.setDepartureCountry((String) aValue);
-                case 12 -> commande.setArrivalCountry((String) aValue);
-                case 13 -> commande.setTransportationMode((String) aValue);
+                case 10 -> commande.setIs_delivered((Boolean) aValue);
+                case 11 -> commande.setDeparture_country((String) aValue);
+                case 12 -> commande.setArrival_country((String) aValue);
+                case 13 -> commande.setTransportation_mode((String) aValue);
                 default -> System.out.println("Invalid column index");
             }
         } catch (NumberFormatException | ParseException e) {

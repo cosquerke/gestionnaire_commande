@@ -9,10 +9,10 @@ public class Commande {
 	private Date order_date;
 	private Date expedition_date;
 	private Date expected_delivery_date;
-	private Float production_cost;
-	private Float transportation_cost;
-	private int vat_fees;
-	private Float price;
+	private Double production_cost;
+	private Double transportation_cost;
+	private Double vat_fees;
+	private Double price;
 	private Boolean is_delivered;
 	private String departure_country;
 	private String arrival_country;
@@ -20,7 +20,7 @@ public class Commande {
 	
 	
 	public Commande(int id, String type, String description, Date order_date, Date expedition_date,
-			Date expected_delivery_date, Float production_cost, Float transportation_cost, int vat_fees, Float price,
+			Date expected_delivery_date, Double production_cost, Double transportation_cost, Double vat_fees, Double price,
 			Boolean is_delivered, String departure_country, String arrival_country, String transportation_mode) {
 		
 		this.id = id;
@@ -100,42 +100,42 @@ public class Commande {
 	}
 
 
-	public Float getProduction_cost() {
+	public Double getProduction_cost() {
 		return production_cost;
 	}
 
 
-	public void setProduction_cost(Float production_cost) {
+	public void setProduction_cost(Double production_cost) {
 		this.production_cost = production_cost;
 	}
 
 
-	public Float getTransportation_cost() {
+	public Double getTransportation_cost() {
 		return transportation_cost;
 	}
 
 
-	public void setTransportation_cost(Float transportation_cost) {
+	public void setTransportation_cost(Double transportation_cost) {
 		this.transportation_cost = transportation_cost;
 	}
 
 
-	public int getVat_fees() {
+	public Double getVat_fees() {
 		return vat_fees;
 	}
 
 
-	public void setVat_fees(int vat_fees) {
+	public void setVat_fees(Double vat_fees) {
 		this.vat_fees = vat_fees;
 	}
 
 
-	public Float getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(Float price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

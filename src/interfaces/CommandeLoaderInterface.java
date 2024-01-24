@@ -1,6 +1,6 @@
 package interfaces;
 
-import entity.Commande;
+import Appli.data.Commande;
 
 import java.util.List;
 
