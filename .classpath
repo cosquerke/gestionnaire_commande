@@ -6,17 +6,17 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/travail/ArchiLogicielle/PROJ/gestionnaire_commande/src/libs/jackson-annotations-2.16.1.jar">
+	<classpathentry kind="lib" path="src/libs/jackson-annotations-2.16.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/travail/ArchiLogicielle/PROJ/gestionnaire_commande/src/libs/jackson-core-2.16.1.jar">
+	<classpathentry kind="lib" path="src/libs/jackson-core-2.16.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/travail/ArchiLogicielle/PROJ/gestionnaire_commande/src/libs/jackson-databind-2.16.1.jar">
+	<classpathentry kind="lib" path="src/libs/jackson-databind-2.16.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
