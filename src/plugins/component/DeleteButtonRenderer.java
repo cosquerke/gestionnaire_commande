@@ -1,4 +1,4 @@
-package component;
+package plugins.component;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;

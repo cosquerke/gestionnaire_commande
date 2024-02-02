@@ -1,7 +1,7 @@
-package loader;
+package plugins;
 
 import Appli.data.Commande;
-import interfaces.CommandeLoaderInterface;
+import interfaces.CommandeImporterInterface;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,17 +12,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CSVLoader implements CommandeLoaderInterface {
-    private final String filepath;
-
-    public CSVLoader(String filepath) {
-        this.filepath = filepath;
-    }
-
+public class CSVCommandeImporter implements CommandeImporterInterface {
     @Override
-    public List<Commande> load() {
+    public List<Commande> importCommandes() {
         List<Commande> commandes = new ArrayList<>();
 
+        String filepath = "src/Appli/data/commandes.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
 

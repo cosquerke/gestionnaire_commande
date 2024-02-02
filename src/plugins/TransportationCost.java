@@ -5,7 +5,7 @@ import java.util.Random;
 import Appli.data.Commande;
 import interfaces.ICost;
 
-public class transportationCost implements ICost {
+public class TransportationCost implements ICost {
 
 	@Override
 	public void update_ht(Commande c) {

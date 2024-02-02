@@ -4,6 +4,8 @@
   "dependencyList": [],
   "maxInstanceNumber": 5,
   "minInstanceNumber": 1,
-  "load": false,
-  "emplacement": "plugins.ProductionCost"
+  "enabled": true,
+  "required": true,
+  "classPath": "plugins.ProductionCost",
+  "additionalParameters": {}
 }

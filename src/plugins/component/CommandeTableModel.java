@@ -1,4 +1,4 @@
-package component;
+package plugins.component;
 
 import Appli.data.Commande;
 import util.DateFormat;

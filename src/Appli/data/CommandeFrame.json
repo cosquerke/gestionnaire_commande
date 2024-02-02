@@ -1,0 +1,11 @@
+{
+  "name": "CommandeFrame",
+  "description": "Interface graphique de l'application",
+  "dependencyList": [],
+  "maxInstanceNumber": 1,
+  "minInstanceNumber": 1,
+  "enabled": true,
+  "required": true,
+  "classPath": "plugins.CommandeFrame",
+  "additionalParameters": {}
+}
