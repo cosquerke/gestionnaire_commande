@@ -85,11 +85,11 @@ public class Loader {
     }
 
     public Object getPlugin(PluginDescriptor pluginDescriptor) {
-        if (!this.pluginInstances.containsKey(pluginDescriptor.classPath())) {
-            this.pluginInstances.put(pluginDescriptor.classPath(), loadPlugin(pluginDescriptor));
+        if (!this.pluginInstances.containsKey(pluginDescriptor.name())) {
+            this.pluginInstances.put(pluginDescriptor.name(), loadPlugin(pluginDescriptor));
         }
 
-        return this.pluginInstances.get(pluginDescriptor.classPath());
+        return this.pluginInstances.get(pluginDescriptor.name());
     }
 
     private PluginDescriptor loadPluginDescriptor(JsonNode jsonNode) {
@@ -107,13 +107,43 @@ public class Loader {
 
     private Object loadPlugin(PluginDescriptor pluginDescriptor) {
         try {
-            return Class.forName(pluginDescriptor.classPath()).getConstructor().newInstance();
+            Object plugin = Class.forName(pluginDescriptor.classPath()).getConstructor().newInstance();
+            
+            for (String dependency : pluginDescriptor.dependenciesList()) {
+                if (!this.pluginInstances.containsKey(dependency)) {
+                    PluginDescriptor dependencyDescriptor = findPluginDescriptorByName(dependency);
+                    if (dependencyDescriptor == null) {
+                        File dependencyFile = new File("src/Appli/data/" + dependency + ".json");
+                        if (dependencyFile.exists() && dependencyFile.isFile()) {
+                            JsonNode dependencyJson = objectMapper.readTree(dependencyFile);
+                            dependencyDescriptor = loadPluginDescriptor(dependencyJson);
+                        } else {
+                            System.err.println("Fichier JSON de la dépendance non trouvé: " + dependency);
+                            continue; 
+                        }
+                    }
+                    
+                    Object dependencyPlugin = Class.forName(dependencyDescriptor.classPath()).getConstructor().newInstance();
+                    this.pluginInstances.put(dependency, dependencyPlugin);
+                }
+            }
+            
+            return plugin;
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                  | InvocationTargetException | NoSuchMethodException | SecurityException
-                 | ClassNotFoundException e) {
+                 | ClassNotFoundException | IOException e) {
             System.err.println("Erreur de chargement du plugin: " + e.getMessage());
         }
 
+        return null;
+    }
+    
+    private PluginDescriptor findPluginDescriptorByName(String descriptorName) {
+        for (PluginDescriptor descriptor : this.pluginDescriptors) {
+            if (descriptor.name().equals(descriptorName)) {
+                return descriptor;
+            }
+        }
         return null;
     }
 }
