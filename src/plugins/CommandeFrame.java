@@ -16,10 +16,9 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CommandeFrame extends JFrame implements CommandeFrameInterface {
-    public static final int MIN_COLUMN_WIDTH = 30;
-    public static final int MAX_COLUMN_WIDTH = 300;
+    private static final int MIN_COLUMN_WIDTH = 30;
+    private static final int MAX_COLUMN_WIDTH = 300;
 
     private List<Commande> commandes;
     private CommandeTableModel model;
@@ -28,7 +27,7 @@ public class CommandeFrame extends JFrame implements CommandeFrameInterface {
         this.commandes = new ArrayList<>();
     }
 
-    public static void adjustColumnWidths(JTable table) {
+    private static void adjustColumnWidths(JTable table) {
         TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {
             int width = MIN_COLUMN_WIDTH;
