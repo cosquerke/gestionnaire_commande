@@ -1,0 +1,11 @@
+{
+  "name": "StrikeEvent",
+  "description": "Simuler l'impact d'une grève sur les délais de livraison",
+  "dependencyList": [],
+  "maxInstanceNumber": 5,
+  "minInstanceNumber": 1,
+  "enabled": true,
+  "required": true,
+  "classPath": "plugins.StrikeEvent",
+  "additionalParameters": {}
+}
