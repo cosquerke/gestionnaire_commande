@@ -2,7 +2,7 @@ package Appli.data;
 
 import java.util.Date;
 
-public class Commande {
+public class Commande implements Cloneable{
 	private int id;
 	private String type;
 	private String description;
@@ -178,6 +178,16 @@ public class Commande {
 	public void setTransportation_mode(String transportation_mode) {
 		this.transportation_mode = transportation_mode;
 	}
+	
+	public Object clone() {
+        Object clone = null;
+        try {
+        	clone = super.clone();
+        } catch(CloneNotSupportedException cnse) {
+            cnse.printStackTrace(System.err);
+        }
+        return clone;
+    }
 
 
 	@Override
