@@ -1,11 +1,13 @@
 package plugins;
 
+import java.util.List;
 import java.util.Random;
 
 import Appli.data.Commande;
 import interfaces.ICost;
+import interfaces.IPluginInterface;
 
-public class TransportationCost implements ICost {
+public class TransportationCost implements ICost, IPluginInterface {
 
 	@Override
 	public void update_ht(Commande c) {
@@ -32,6 +34,12 @@ public class TransportationCost implements ICost {
 		// TODO Auto-generated method stub
 		return c.getTransportation_cost();
 		
+	}
+
+	@Override
+	public List<Commande> executePlugin(List<Commande> listeCommande) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

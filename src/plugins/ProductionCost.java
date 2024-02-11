@@ -6,8 +6,9 @@ import java.util.Random;
 import Appli.data.Commande;
 import interfaces.ICost;
 import interfaces.IMainAppPlugin;
+import interfaces.IPluginInterface;
 
-public class ProductionCost implements ICost, IMainAppPlugin {
+public class ProductionCost implements ICost, IPluginInterface {
 
     private String Name;
     private String Description;
@@ -39,68 +40,10 @@ public class ProductionCost implements ICost, IMainAppPlugin {
         return c.getProduction_cost();
     }
 
-    @Override
-    public String getName() {
-        return Name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.Name = name;
-    }
-
-    @Override
-    public String getDescription() {
-        return Description;
-    }
-
-    @Override
-    public void setDescription(String description) {
-        this.Description = description;
-    }
-
-    @Override
-    public List<String> getDependencyList() {
-        return DependenciesList;
-    }
-
-    @Override
-    public int getMaxInstanceNumber() {
-        return MaxInstanceNumber;
-    }
-
-    @Override
-    public void setMaxInstanceNumber(int maxInstanceNumber) {
-        this.MaxInstanceNumber = maxInstanceNumber;
-    }
-
-    @Override
-    public int getMinInstanceNumber() {
-        return MinInstanceNumber;
-    }
-
-    @Override
-    public void setMinInstanceNumber(int minInstanceNumber) {
-        this.MinInstanceNumber = minInstanceNumber;
-    }
-
-    @Override
-    public boolean isLoad() {
-        return Load;
-    }
-
-    @Override
-    public void setLoad(boolean load) {
-        this.Load = load;
-    }
 
 	@Override
-	public String getEmplacement() {
-		return this.Emplacement;
-	}
-
-	@Override
-	public void setEmplacement(String emplacement) {
-		this.Emplacement = emplacement;	
+	public List<Commande> executePlugin(List<Commande> listeCommande) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
