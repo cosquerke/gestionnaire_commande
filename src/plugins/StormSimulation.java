@@ -2,14 +2,16 @@ package plugins;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import Appli.data.Commande;
 import interfaces.ICost;
 import interfaces.IDeliveryDate;
+import interfaces.IPluginInterface;
 import interfaces.ISimulateEvent;
 
-public class StormSimulation implements ISimulateEvent {
+public class StormSimulation implements ISimulateEvent, IPluginInterface {
 
 	@Override
 	public Commande getEventImpact(Commande commande, IDeliveryDate deliveryDate, ICost cost, Integer min, Integer max) {
@@ -69,6 +71,12 @@ public class StormSimulation implements ISimulateEvent {
         	commande.setTransportation_cost(newTransportationCost);
         	break;
         }
+	}
+
+	@Override
+	public List<Commande> executePlugin(List<Commande> listeCommande) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
