@@ -13,33 +13,28 @@ import interfaces.ISimulateEvent;
 
 public class StrikeSimulation implements ISimulateEvent, IPluginInterface {
 
+	private IDeliveryDate strikeEvent;
+	private ICost transportationCost;
+	private ICost productionCost;
+	
 	@Override
 	public List<Commande> executePlugin(List<Commande> listeCommande, Integer min, Integer max) {
-		// TODO Auto-generated method stub
 		List<Commande> returnList = new ArrayList<Commande>();
 		
 		for (Commande c : listeCommande) {
 			if ( ! c.getIs_delivered()) {
-				// Objet IDeliveryDate StormEvent
-				IDeliveryDate strikeEvent = new StrikeEvent();
-				// Objet ICost Transportation ou Production
-				ICost transportation = new TransportationCost();
-				ICost production = new ProductionCost();
-				Commande cmdTmp = this.getEventImpact(c, strikeEvent, transportation, production, min, max);
+				Commande cmdTmp = this.getEventImpact(c, strikeEvent, transportationCost, productionCost, min, max);
 				returnList.add(cmdTmp);
 			}else {
 				returnList.add(c);
-			}
-			
+			}	
 		}
 		
 		return returnList;
 	}
 
 	@Override
-	public Commande getEventImpact(Commande commande, IDeliveryDate deliveryDate, ICost transportation,
-			ICost production, Integer min, Integer max) {
-		// TODO Auto-generated method stub
+	public Commande getEventImpact(Commande commande, IDeliveryDate deliveryDate, ICost transportation, ICost production, Integer min, Integer max) {
 		Double newProductionCost;
 		Double newTransportationCost;
 		Float taxes;
@@ -60,14 +55,18 @@ public class StrikeSimulation implements ISimulateEvent, IPluginInterface {
     	newTransportationCost = transportation.get_ttc(commande, taxes) + interval/10000000;
     	newCommande.setTransportation_cost(newTransportationCost);
         
-		
 		return newCommande;
 	}
-
-	@Override
-	public void setEventImpact(Commande commande, IDeliveryDate deliveryDate, ICost cost, Integer min, Integer max) {
-		// TODO Auto-generated method stub
-
+	
+	public void setStrikeEvent(IDeliveryDate strikeEvent) {
+		this.strikeEvent = strikeEvent;
 	}
 
+	public void setTransportationCost(ICost transportationCost) {
+		this.transportationCost = transportationCost;
+	}
+
+	public void setProductionCost(ICost productionCost) {
+		this.productionCost = productionCost;
+	}
 }

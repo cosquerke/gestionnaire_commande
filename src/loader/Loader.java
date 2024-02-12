@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class Loader {
@@ -151,6 +152,7 @@ public class Loader {
     private Object loadPlugin(PluginDescriptor pluginDescriptor) {
         try {
             Object plugin = Class.forName(pluginDescriptor.classPath()).getConstructor().newInstance();
+            Object dependencyPlugin = null;
             for (String dependency : pluginDescriptor.dependenciesList()) {
                 if (!this.pluginInstances.containsKey(dependency)) {
                     PluginDescriptor dependencyDescriptor = findPluginDescriptorByName(dependency);
@@ -166,8 +168,30 @@ public class Loader {
                         }
                     }
                     
-                    Object dependencyPlugin = Class.forName(dependencyDescriptor.classPath()).getConstructor().newInstance();
+                    dependencyPlugin = Class.forName(dependencyDescriptor.classPath()).getConstructor().newInstance();
                     this.pluginInstances.put(dependency, dependencyPlugin);
+                } else {
+                	dependencyPlugin = this.pluginInstances.get(dependency);
+                }
+                
+                String dependencyClassName = dependencyPlugin.getClass().getSimpleName();
+                String setterMethodName = "set" + dependencyClassName;
+                Method setterMethod = null;
+                try {
+                	Class<?> dependencyInterface = dependencyPlugin.getClass().getInterfaces()[0];
+                    setterMethod = plugin.getClass().getMethod(setterMethodName, dependencyInterface);
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException("Échec lors de la récuperation de la méthode" + setterMethodName);
+                }
+                
+                if (setterMethod != null) {
+                    try {
+                        setterMethod.invoke(plugin, dependencyPlugin);
+                    } catch (Exception e) {
+                        e.printStackTrace(); 
+                        throw new RuntimeException("Échec lors de l'appel à la méthode" + setterMethodName);
+                    }
                 }
             }
             

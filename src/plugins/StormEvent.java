@@ -9,7 +9,6 @@ public class StormEvent implements IDeliveryDate {
 
 	@Override
 	public Date get_delivery_date(Commande c, Integer min, Integer max) {
-		// TODO Auto-generated method stub
 		Integer nbDays;
 		Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getExpected_delivery_date());
@@ -37,12 +36,6 @@ public class StormEvent implements IDeliveryDate {
 
 	@Override
 	public void update_delivery_date(Commande c, Integer min, Integer max) {
-		// TODO Auto-generated method stub
 		c.setExpected_delivery_date(this.get_delivery_date(c, min, max));
-		
 	}
-	
-
-
-
 }

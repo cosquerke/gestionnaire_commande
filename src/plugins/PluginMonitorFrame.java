@@ -58,7 +58,7 @@ public class PluginMonitorFrame extends JFrame implements IPluginMonitorFrame{
 	        JLabel classLoadedLabel = new JLabel("Classe chargée : " +Boolean.toString(pluginMonitoring.classLoaded()));
 
 	        JPanel labelsPanel = new JPanel(new GridLayout(0, 1));
-	        //labelsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+	        labelsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 	        labelsPanel.add(nameLabel);
 	        labelsPanel.add(descriptorLoadedLabel);
 	        labelsPanel.add(classLoadedLabel);

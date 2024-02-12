@@ -6,14 +6,12 @@ import java.util.Date;
 import Appli.data.Commande;
 import interfaces.IDeliveryDate;
 
-
 public class StrikeEvent implements IDeliveryDate {
 	
 	public static Integer minDays = 30;
 
 	@Override
 	public Date get_delivery_date(Commande c, Integer min, Integer max) {
-		// TODO Auto-generated method stub
 		Integer nbDays;
 		Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getExpected_delivery_date());
@@ -41,11 +39,6 @@ public class StrikeEvent implements IDeliveryDate {
 
 	@Override
 	public void update_delivery_date(Commande c, Integer min, Integer max) {
-		// TODO Auto-generated method stub
 		c.setExpected_delivery_date(this.get_delivery_date(c, min, max));
-		
 	}
-
-
-
 }
