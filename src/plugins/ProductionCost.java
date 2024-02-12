@@ -8,7 +8,7 @@ import interfaces.ICost;
 import interfaces.IMainAppPlugin;
 import interfaces.IPluginInterface;
 
-public class ProductionCost implements ICost, IPluginInterface {
+public class ProductionCost implements ICost {
 
     private String Name;
     private String Description;
@@ -39,11 +39,4 @@ public class ProductionCost implements ICost, IPluginInterface {
     public Double get_ttc(Commande c, Float taxes) {
         return c.getProduction_cost();
     }
-
-
-	@Override
-	public List<Commande> executePlugin(List<Commande> listeCommande) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
