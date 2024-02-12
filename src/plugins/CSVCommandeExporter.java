@@ -10,7 +10,7 @@ import java.util.List;
 public class CSVCommandeExporter implements CommandeExporterInterface {
     @Override
     public void exportCommandes(List<Commande> commandes) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try (PrintWriter writer = new PrintWriter("src/Appli/data/commandes.csv")) {
             // En-tête du CSV
