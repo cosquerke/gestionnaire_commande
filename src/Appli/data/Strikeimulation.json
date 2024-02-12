@@ -1,0 +1,11 @@
+{
+  "name": "StrikeSimulation",
+  "description": "Simululer l'impact d'une greve sur les délais de livraison et les coûts de transport/production",
+  "dependencyList": ["TransportationCost","ProductionCost","StrikeEvent"],
+  "maxInstanceNumber": 5,
+  "minInstanceNumber": 1,
+  "enabled": true,
+  "required": true,
+  "classPath": "plugins.StrikeSimulation",
+  "additionalParameters": {}
+}

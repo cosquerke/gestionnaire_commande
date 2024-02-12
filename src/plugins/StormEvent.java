@@ -10,7 +10,7 @@ import interfaces.IDeliveryDate;
 import interfaces.IPluginInterface;
 import util.DateFormat;
 
-public class StormEvent implements IDeliveryDate, IPluginInterface {
+public class StormEvent implements IDeliveryDate {
 
 	@Override
 	public Date get_delivery_date(Commande c, Integer min, Integer max) {
@@ -18,6 +18,14 @@ public class StormEvent implements IDeliveryDate, IPluginInterface {
 		Integer nbDays;
 		Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getExpected_delivery_date());
+        
+        if(min < 0 || min < this.minDays) {
+        	min = this.minDays;
+        }
+        
+        if(max < min) {
+        	max = min;
+        }
         
 		if ((min == 0) && (max == 0)) {
 			// Mode aléatoire
@@ -38,12 +46,7 @@ public class StormEvent implements IDeliveryDate, IPluginInterface {
 		c.setExpected_delivery_date(this.get_delivery_date(c, min, max));
 		
 	}
-
-	@Override
-	public List<Commande> executePlugin(List<Commande> listeCommande) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 
 

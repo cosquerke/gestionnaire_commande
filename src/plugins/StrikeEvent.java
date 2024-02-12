@@ -11,7 +11,9 @@ import interfaces.IDeliveryDate;
 import interfaces.IPluginInterface;
 import util.DateFormat;
 
-public class StrikeEvent implements IDeliveryDate, IPluginInterface {
+public class StrikeEvent implements IDeliveryDate {
+	
+	public static Integer minDays = 30;
 
 	@Override
 	public Date get_delivery_date(Commande c, Integer min, Integer max) {
@@ -19,6 +21,14 @@ public class StrikeEvent implements IDeliveryDate, IPluginInterface {
 		Integer nbDays;
 		Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getExpected_delivery_date());
+        
+        if(min < 0 || min < minDays) {
+        	min = minDays;
+        }
+        
+        if(max < min) {
+        	max = min;
+        }
         
 		if ((min == 0) && (max == 0)) {
 			// Mode aléatoire
@@ -40,11 +50,6 @@ public class StrikeEvent implements IDeliveryDate, IPluginInterface {
 		
 	}
 
-	@Override
-	public List<Commande> executePlugin(List<Commande> listeCommande) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

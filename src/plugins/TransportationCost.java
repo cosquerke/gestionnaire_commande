@@ -7,7 +7,7 @@ import Appli.data.Commande;
 import interfaces.ICost;
 import interfaces.IPluginInterface;
 
-public class TransportationCost implements ICost, IPluginInterface {
+public class TransportationCost implements ICost {
 
 	@Override
 	public void update_ht(Commande c) {
@@ -36,10 +36,5 @@ public class TransportationCost implements ICost, IPluginInterface {
 		
 	}
 
-	@Override
-	public List<Commande> executePlugin(List<Commande> listeCommande) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

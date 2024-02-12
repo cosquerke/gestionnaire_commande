@@ -3,6 +3,7 @@ package Appli;
 import Appli.data.Commande;
 import interfaces.CommandeExporterInterface;
 import interfaces.CommandeImporterInterface;
+import interfaces.IPluginInterface;
 import loader.Loader;
 import plugins.component.AddCommandeDialog;
 import plugins.component.CommandeTableModel;
@@ -22,6 +23,8 @@ import java.util.List;
 public class Main {
     private static CommandeImporterInterface importer;
     private static CommandeExporterInterface exporter;
+    private static IPluginInterface feature;
+    
     private static List<Commande> commandes;
 
     private static final int MIN_COLUMN_WIDTH = 30;
@@ -115,11 +118,33 @@ public class Main {
             exportButton.addActionListener(e -> exporterDialog.setVisible(true));
 
             // Create a panel for the bottom totals
-            JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            totalPanel.add(new JLabel("Total coûts production"));
-            totalPanel.add(new JLabel("Total coûts livraison"));
-            totalPanel.add(new JLabel("Montant total"));
-            totalPanel.add(new JLabel("Marge totale"));
+            JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));      
+            
+            JLabel label_min = new JLabel("Minimum delay :");
+            totalPanel.add(label_min);
+            JTextField min_delay = new JTextField();
+            min_delay.setText("0");
+            totalPanel.add(min_delay);
+            
+            JLabel label_max = new JLabel("Maximum delay :");
+            totalPanel.add(label_max);
+            JTextField max_delay = new JTextField();
+            max_delay.setText("0");
+            totalPanel.add(max_delay);
+            
+            List<PluginDescriptor> featuresDescriptors = loader.getPluginDescriptorsForInterface(IPluginInterface.class);
+            for (PluginDescriptor descriptor : featuresDescriptors) {
+                JButton button = new JButton(descriptor.name());
+                button.addActionListener(e -> {
+                	// appel des methodes execute 
+                	feature = (IPluginInterface) loader.getPlugin(descriptor);
+                	commandes = feature.executePlugin(commandes, Integer.parseInt(min_delay.getText()), Integer.parseInt(max_delay.getText()));
+                	buidlPanel(table,commandes);
+             
+                });
+                totalPanel.add(button);
+            }
+            
 
             // Add the components to the frame
             frame.add(scrollPane, BorderLayout.CENTER);
@@ -144,5 +169,13 @@ public class Main {
                 width = MAX_COLUMN_WIDTH;
             columnModel.getColumn(column).setPreferredWidth(width);
         }
+    }
+    
+    public static void buidlPanel(JTable table, List<Commande> commandes) {
+    	CommandeTableModel new_model = new CommandeTableModel(commandes);
+    	table.setModel(new_model);
+    	DeleteButtonRenderer buttonRenderer = new DeleteButtonRenderer();
+        table.getColumn("Supprimer").setCellRenderer(buttonRenderer);
+        table.getColumn("Supprimer").setCellEditor(new DeleteButtonEditor(new JCheckBox(), table, commandes));
     }
 }
