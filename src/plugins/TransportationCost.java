@@ -1,11 +1,9 @@
 package plugins;
 
-import java.util.List;
 import java.util.Random;
 
 import Appli.data.Commande;
 import interfaces.ICost;
-import interfaces.IPluginInterface;
 
 public class TransportationCost implements ICost {
 

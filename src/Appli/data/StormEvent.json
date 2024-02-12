@@ -2,10 +2,7 @@
   "name": "StormEvent",
   "description": "Simululer l'impact d'une tempete sur les délais de livraison",
   "dependencyList": [],
-  "maxInstanceNumber": 5,
-  "minInstanceNumber": 1,
-  "enabled": true,
-  "required": true,
+  "enabled": false,
   "classPath": "plugins.StormEvent",
   "additionalParameters": {}
 }

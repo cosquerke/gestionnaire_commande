@@ -1,15 +1,11 @@
 package plugins;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
 
 import Appli.data.Commande;
 import interfaces.IDeliveryDate;
-import interfaces.IPluginInterface;
-import util.DateFormat;
+
 
 public class StrikeEvent implements IDeliveryDate {
 	

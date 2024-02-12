@@ -3,6 +3,7 @@ package loader;
 import Appli.PluginDescriptor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -91,16 +92,58 @@ public class Loader {
 
         return this.pluginInstances.get(pluginDescriptor.name());
     }
+    
+    public List<PluginDescriptor> loadAllPluginDescriptors() {
+        File directory = new File("src/Appli/data");
+        List<PluginDescriptor> allPluginDescriptors = new ArrayList<PluginDescriptor>();
+        if (!directory.exists() || !directory.isDirectory()) {
+            System.err.println("Le répertoire spécifié n'existe pas.");
+            return allPluginDescriptors;
+        }
 
-    private PluginDescriptor loadPluginDescriptor(JsonNode jsonNode) {
+        File[] files = directory.listFiles();
+        if (null == files) {
+            System.err.println("Le répertoire spécifié ne contient aucun fichiers");
+            return allPluginDescriptors;
+        }
+
+        for (File file : files) {
+            if (file.isFile() && file.getName().endsWith(".json")) {
+                try {
+                    JsonNode pluginDescription = objectMapper.readTree(file);
+                    PluginDescriptor plugin = loadPluginDescriptor(pluginDescription);
+                    allPluginDescriptors.add(plugin);
+                } catch (IOException e) {
+                    System.err.println("Erreur lors de la lecture du fichier " + file.getName());
+                    System.err.println(e.getMessage());
+                }
+            }
+        }
+		return allPluginDescriptors;
+    }
+
+    public List<PluginDescriptor> getPluginDescriptors() {
+		return pluginDescriptors;
+	}
+
+	public Map<String, Object> getPluginInstances() {
+		return pluginInstances;
+	}
+
+	private PluginDescriptor loadPluginDescriptor(JsonNode jsonNode) {
+		List<String> dependencies = new ArrayList<>();
+	    ArrayNode dependencyNode = (ArrayNode) jsonNode.get("dependencyList");
+	    if (dependencyNode != null) {
+	        for (JsonNode categoryNode : dependencyNode) {
+	        	dependencies.add(categoryNode.asText());
+	        }
+	    }
+		
         return new PluginDescriptor(
                 jsonNode.get("name").asText(),
                 jsonNode.get("description").asText(),
-                new ArrayList<>(),
-                jsonNode.get("minInstanceNumber").asInt(),
-                jsonNode.get("maxInstanceNumber").asInt(),
+                dependencies,
                 jsonNode.get("enabled").asBoolean(),
-                jsonNode.get("required").asBoolean(),
                 jsonNode.get("classPath").asText()
         );
     }
@@ -108,7 +151,6 @@ public class Loader {
     private Object loadPlugin(PluginDescriptor pluginDescriptor) {
         try {
             Object plugin = Class.forName(pluginDescriptor.classPath()).getConstructor().newInstance();
-            
             for (String dependency : pluginDescriptor.dependenciesList()) {
                 if (!this.pluginInstances.containsKey(dependency)) {
                     PluginDescriptor dependencyDescriptor = findPluginDescriptorByName(dependency);
@@ -117,6 +159,7 @@ public class Loader {
                         if (dependencyFile.exists() && dependencyFile.isFile()) {
                             JsonNode dependencyJson = objectMapper.readTree(dependencyFile);
                             dependencyDescriptor = loadPluginDescriptor(dependencyJson);
+                            this.pluginDescriptors.add(dependencyDescriptor);
                         } else {
                             System.err.println("Fichier JSON de la dépendance non trouvé: " + dependency);
                             continue; 

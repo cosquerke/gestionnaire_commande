@@ -2,10 +2,7 @@
   "name": "CSVCommandeImporter",
   "description": "Importation en CSV",
   "dependencyList": [],
-  "maxInstanceNumber": 5,
-  "minInstanceNumber": 1,
   "enabled": true,
-  "required": true,
   "classPath": "plugins.CSVCommandeImporter",
   "additionalParameters": {}
 }

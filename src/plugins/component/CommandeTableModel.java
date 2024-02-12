@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class CommandeTableModel extends DefaultTableModel {
     private final List<Commande> commandes;
     private final SimpleDateFormat dateFormat = DateFormat.getInstance();
@@ -68,7 +69,6 @@ public class CommandeTableModel extends DefaultTableModel {
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Commande commande = commandes.get(rowIndex);
-        System.out.println(rowIndex);
         try {
             switch (columnIndex) {
                 case 0, 14 -> {

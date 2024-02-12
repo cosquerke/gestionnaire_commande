@@ -2,10 +2,7 @@
   "name": "StormSimulation",
   "description": "Simululer l'impact d'une tempete sur les délais de livraison et les coûts de transport/production",
   "dependencyList": ["TransportationCost","ProductionCost","StormEvent"],
-  "maxInstanceNumber": 5,
-  "minInstanceNumber": 1,
   "enabled": true,
-  "required": true,
   "classPath": "plugins.StormSimulation",
   "additionalParameters": {}
 }

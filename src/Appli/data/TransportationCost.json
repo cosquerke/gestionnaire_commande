@@ -2,10 +2,7 @@
   "name": "TransportationCost",
   "description": "Calcul des couts de transport",
   "dependencyList": [],
-  "maxInstanceNumber": 5,
-  "minInstanceNumber": 1,
   "enabled": true,
-  "required": true,
   "classPath": "plugins.TransportationCost",
   "additionalParameters": {}
 }

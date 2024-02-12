@@ -1,0 +1,9 @@
+{
+  "name": "PluginMonitorFrame",
+  "description": "Interface graphique du monitoring de plugins.",
+  "dependencyList": [],
+  "enabled": true,
+  "classPath": "plugins.PluginMonitorFrame",
+  "additionalParameters": {}
+}
+  

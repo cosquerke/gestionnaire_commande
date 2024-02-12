@@ -1,14 +1,9 @@
 package plugins;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
 
 import Appli.data.Commande;
 import interfaces.IDeliveryDate;
-import interfaces.IPluginInterface;
-import util.DateFormat;
 
 public class StormEvent implements IDeliveryDate {
 
@@ -19,8 +14,8 @@ public class StormEvent implements IDeliveryDate {
 		Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getExpected_delivery_date());
         
-        if(min < 0 || min < this.minDays) {
-        	min = this.minDays;
+        if(min < 0 || min < IDeliveryDate.minDays) {
+        	min = IDeliveryDate.minDays;
         }
         
         if(max < min) {

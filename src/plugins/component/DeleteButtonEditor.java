@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class DeleteButtonEditor extends DefaultCellEditor {
     protected JButton button;
     private boolean isPushed;

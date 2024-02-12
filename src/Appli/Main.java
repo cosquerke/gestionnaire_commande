@@ -4,6 +4,7 @@ import Appli.data.Commande;
 import interfaces.CommandeExporterInterface;
 import interfaces.CommandeImporterInterface;
 import interfaces.IPluginInterface;
+import interfaces.IPluginMonitorFrame;
 import loader.Loader;
 import plugins.component.AddCommandeDialog;
 import plugins.component.CommandeTableModel;
@@ -33,6 +34,12 @@ public class Main {
     public static void main(String[] args) {
         Loader loader = Loader.getInstance();
 
+        List<PluginDescriptor> monitoringFrameDescriptors = loader.getPluginDescriptorsForInterface(IPluginMonitorFrame.class);
+        IPluginMonitorFrame monitorFrame = (IPluginMonitorFrame) loader.getPlugin(monitoringFrameDescriptors.get(0));
+        
+        monitorFrame.setPlugins();
+        monitorFrame.display();
+        
         SwingUtilities.invokeLater(() -> {
             JDialog importerDialog = new JDialog();
             importerDialog.setModal(true);
@@ -153,7 +160,20 @@ public class Main {
 
             frame.setLocationRelativeTo(null); // Centrer la fenêtre
             frame.setVisible(true);
+            
+            Thread updateThread = new Thread(() -> {
+                while (!Thread.currentThread().isInterrupted()) {
+                    monitorFrame.setPlugins();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            });
+            updateThread.start();
         });
+        
     }
 
     private static void adjustColumnWidths(JTable table) {

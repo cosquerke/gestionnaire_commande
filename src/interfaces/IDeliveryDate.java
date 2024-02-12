@@ -1,10 +1,8 @@
 package interfaces;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import Appli.data.Commande;
-import util.DateFormat;
 
 public interface IDeliveryDate {
 	Integer maxDays = 200;

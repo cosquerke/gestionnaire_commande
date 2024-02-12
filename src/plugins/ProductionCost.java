@@ -1,22 +1,11 @@
 package plugins;
 
-import java.util.List;
 import java.util.Random;
 
 import Appli.data.Commande;
 import interfaces.ICost;
-import interfaces.IMainAppPlugin;
-import interfaces.IPluginInterface;
 
 public class ProductionCost implements ICost {
-
-    private String Name;
-    private String Description;
-    private List<String> DependenciesList;
-    private int MaxInstanceNumber;
-    private int MinInstanceNumber;
-    private boolean Load;
-    private String Emplacement;
 
     @Override
     public void update_ht(Commande c) {
@@ -31,7 +20,6 @@ public class ProductionCost implements ICost {
 
     @Override
     public Double get_ht(Commande c, Float taxes) {
-        System.out.println(c.getProduction_cost() * (1 - taxes));
         return c.getProduction_cost() * (1 - taxes);
     }
 

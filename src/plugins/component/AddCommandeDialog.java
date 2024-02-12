@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.ParseException;
 
+@SuppressWarnings("serial")
 public class AddCommandeDialog extends JDialog {
 
     public AddCommandeDialog(Frame owner) {

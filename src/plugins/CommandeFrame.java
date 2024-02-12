@@ -16,6 +16,7 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class CommandeFrame extends JFrame implements CommandeFrameInterface {
     private static final int MIN_COLUMN_WIDTH = 30;
     private static final int MAX_COLUMN_WIDTH = 300;
