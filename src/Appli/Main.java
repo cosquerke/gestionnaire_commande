@@ -117,9 +117,12 @@ public class Main {
                 button.addActionListener(e -> {
                 	// appel des méthodes execute
                     if (Integer.parseInt(eventDuration.getText()) >= 0) {
-                        IPluginInterface feature = (IPluginInterface) loader.getPlugin(descriptor);
-                        commandes = feature.executePlugin(commandes, Integer.parseInt(eventDuration.getText()));
-                        buildPanel(table,commandes);
+                        IPluginInterface plugin = (IPluginInterface) loader.getPlugin(descriptor);
+
+                        if (null != plugin) {
+                            commandes = plugin.executePlugin(commandes, Integer.parseInt(eventDuration.getText()));
+                            buildPanel(table,commandes);
+                        }
                     }
                 });
                 totalPanel.add(button);

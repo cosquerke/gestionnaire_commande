@@ -12,9 +12,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
+/**
+ * Loader est une classe singleton qui gère le chargement et l'instanciation des plugins à partir de fichiers JSON.
+ */
 public class Loader {
     private static Loader loader_singleton;
+
     private final List<PluginDescriptor> pluginDescriptors;
+
     private final Map<String, Object> pluginInstances;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -25,10 +30,16 @@ public class Loader {
         loadPluginDescriptors();
     }
 
+    /**
+     * Obtient l'instance unique du Loader (singleton).
+     *
+     * @return Instance unique du Loader
+     */
     public static Loader getInstance() {
         return lazyLoader();
     }
 
+    // Méthode pour l'instanciation paresseuse du singleton.
     private static Loader lazyLoader() {
         if (loader_singleton == null) {
             loader_singleton = new Loader();
@@ -36,6 +47,9 @@ public class Loader {
         return loader_singleton;
     }
 
+    /**
+     * Charge les descripteurs de plugins qui doivent être chargé au démarrage à partir des fichiers JSON.
+     */
     public void loadPluginDescriptors() {
         File directory = new File("src/Appli/data");
 
@@ -46,7 +60,7 @@ public class Loader {
 
         File[] files = directory.listFiles();
         if (null == files) {
-            System.err.println("Le répertoire spécifié ne contient aucun fichiers");
+            System.err.println("Le répertoire spécifié ne contient aucun fichier.");
             return;
         }
 
@@ -55,7 +69,7 @@ public class Loader {
                 try {
                     JsonNode pluginDescription = objectMapper.readTree(file);
 
-                    // if plugin is enabled
+                    // Si le plugin est activé
                     if (pluginDescription.get("enabled").asBoolean()) {
                         PluginDescriptor plugin = loadPluginDescriptor(pluginDescription);
                         this.pluginDescriptors.add(plugin);
@@ -68,6 +82,12 @@ public class Loader {
         }
     }
 
+    /**
+     * Récupère les descripteurs de plugins correspondant à une interface donnée.
+     *
+     * @param interfaceClass L'interface recherchée.
+     * @return Liste des descripteurs de plugins correspondant à l'interface donnée.
+     */
     public List<PluginDescriptor> getPluginDescriptorsForInterface(Class<?> interfaceClass) {
         List<PluginDescriptor> correspondingDescriptors = new ArrayList<>();
         this.pluginDescriptors.forEach(pluginDescriptor -> {
@@ -83,10 +103,23 @@ public class Loader {
         return correspondingDescriptors;
     }
 
+    /**
+     * Récupère les interfaces implémentées par un plugin donné.
+     *
+     * @param pluginDescriptor Descripteur du plugin
+     * @return Liste des interfaces implémentées par le plugin
+     * @throws ClassNotFoundException Si une classe n'a pas pu être trouvée
+     */
     public List<Class<?>> getPluginInterfaces(PluginDescriptor pluginDescriptor) throws ClassNotFoundException {
         return Arrays.asList(Class.forName(pluginDescriptor.classPath()).getInterfaces());
     }
 
+    /**
+     * Obtient une instance du plugin correspondant au descripteur donné.
+     *
+     * @param pluginDescriptor Descripteur du plugin
+     * @return Instance du plugin
+     */
     public Object getPlugin(PluginDescriptor pluginDescriptor) {
         if (!this.pluginInstances.containsKey(pluginDescriptor.name())) {
             try {
@@ -100,6 +133,11 @@ public class Loader {
         return this.pluginInstances.get(pluginDescriptor.name());
     }
 
+    /**
+     * Charge tous les descripteurs de plugins à partir des fichiers JSON.
+     *
+     * @return Liste de tous les descripteurs de plugins.
+     */
     public List<PluginDescriptor> loadAllPluginDescriptors() {
         File directory = new File("src/Appli/data");
         List<PluginDescriptor> allPluginDescriptors = new ArrayList<>();
@@ -110,7 +148,7 @@ public class Loader {
 
         File[] files = directory.listFiles();
         if (null == files) {
-            System.err.println("Le répertoire spécifié ne contient aucun fichiers");
+            System.err.println("Le répertoire spécifié ne contient aucun fichier.");
             return allPluginDescriptors;
         }
 
@@ -129,14 +167,25 @@ public class Loader {
         return allPluginDescriptors;
     }
 
+    /**
+     * Obtient la liste des descripteurs de plugins.
+     *
+     * @return Liste des descripteurs de plugins
+     */
     public List<PluginDescriptor> getPluginDescriptors() {
         return pluginDescriptors;
     }
 
+    /**
+     * Obtient les instances de plugins.
+     *
+     * @return Les instances de plugins.
+     */
     public Map<String, Object> getPluginInstances() {
         return pluginInstances;
     }
 
+    // Charge un descripteur de plugin à partir d'un nœud JSON
     private PluginDescriptor loadPluginDescriptor(JsonNode jsonNode) {
         List<String> dependencies = new ArrayList<>();
         ArrayNode dependencyNode = (ArrayNode) jsonNode.get("dependencyList");
@@ -166,6 +215,12 @@ public class Loader {
         );
     }
 
+    /**
+     * Charge un plugin ainsi que toutes ses dépendances recursivement tout en settant pour chaque plugin une instanciation de ses dependances.
+     * @param pluginDescriptor Le descripteur du plugin à charger.
+     * @return L'instanciation correspondant au descripteur de plugin donné.
+     * @throws DependencyNotEnabledException exception si la dépendance n'est pas activée
+     */
     private Object loadPlugin(PluginDescriptor pluginDescriptor) throws DependencyNotEnabledException {
         try {
             Object plugin = Class.forName(pluginDescriptor.classPath()).getConstructor().newInstance();
@@ -233,6 +288,12 @@ public class Loader {
         }
     }
 
+
+    /**
+     * Récupère un descripteur de plugin à partir de son nom.
+     * @param descriptorName Le nom du descripteur.
+     * @return Le descripteur.
+     */
     private PluginDescriptor findPluginDescriptorByName(String descriptorName) {
         for (PluginDescriptor descriptor : this.pluginDescriptors) {
             if (descriptor.name().equals(descriptorName)) {
