@@ -5,5 +5,5 @@ import java.util.List;
 import Appli.data.Commande;
 
 public interface IPluginInterface {
-	public List<Commande> executePlugin(List<Commande> listeCommande, Integer min, Integer max);
+	public List<Commande> executePlugin(List<Commande> listeCommande, Integer eventDuration);
 }

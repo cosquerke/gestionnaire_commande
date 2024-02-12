@@ -18,13 +18,13 @@ public class StormSimulation implements ISimulateEvent, IPluginInterface {
 	private ICost productionCost;
 	
 	@Override
-	public Commande getEventImpact(Commande commande, IDeliveryDate deliveryDate, ICost transportation, ICost production, Integer min, Integer max) {
+	public Commande getEventImpact(Commande commande, IDeliveryDate deliveryDate, ICost transportation, ICost production, Integer eventDuration) {
 		Double newProductionCost;
 		Double newTransportationCost;
 		Float taxes;
 		Commande newCommande = (Commande) commande.clone();
 		
-		Date newDeliveryDate = deliveryDate.get_delivery_date(commande, min, max);
+		Date newDeliveryDate = deliveryDate.get_delivery_date(commande, eventDuration);
 		
 		newCommande.setExpected_delivery_date(newDeliveryDate);
 		
@@ -43,12 +43,12 @@ public class StormSimulation implements ISimulateEvent, IPluginInterface {
 	}
 
 	@Override
-	public List<Commande> executePlugin(List<Commande> listeCommande, Integer min, Integer max) {
+	public List<Commande> executePlugin(List<Commande> listeCommande, Integer eventDuration) {
 		List<Commande> returnList = new ArrayList<Commande>();
 		
 		for (Commande c : listeCommande) {
 			if( ! c.getIs_delivered()) {
-				Commande cmdTmp = this.getEventImpact(c, stormEvent, transportationCost, productionCost, min, max);
+				Commande cmdTmp = this.getEventImpact(c, stormEvent, transportationCost, productionCost, eventDuration);
 				returnList.add(cmdTmp);
 			}else {
 				returnList.add(c);

@@ -127,17 +127,11 @@ public class Main {
             // Create a panel for the bottom totals
             JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));      
             
-            JLabel label_min = new JLabel("Minimum delay :");
-            totalPanel.add(label_min);
-            JTextField min_delay = new JTextField();
-            min_delay.setText("0");
-            totalPanel.add(min_delay);
-            
-            JLabel label_max = new JLabel("Maximum delay :");
-            totalPanel.add(label_max);
-            JTextField max_delay = new JTextField();
-            max_delay.setText("0");
-            totalPanel.add(max_delay);
+            JLabel labelEventDuration = new JLabel("Event duration :");
+            totalPanel.add(labelEventDuration);
+            JTextField eventDuration = new JTextField();
+            eventDuration.setText("0");
+            totalPanel.add(eventDuration);
             
             List<PluginDescriptor> featuresDescriptors = loader.getPluginDescriptorsForInterface(IPluginInterface.class);
             for (PluginDescriptor descriptor : featuresDescriptors) {
@@ -145,7 +139,7 @@ public class Main {
                 button.addActionListener(e -> {
                 	// appel des methodes execute 
                 	feature = (IPluginInterface) loader.getPlugin(descriptor);
-                	commandes = feature.executePlugin(commandes, Integer.parseInt(min_delay.getText()), Integer.parseInt(max_delay.getText()));
+                	commandes = feature.executePlugin(commandes, Integer.parseInt(eventDuration.getText()));
                 	buidlPanel(table,commandes);
              
                 });
