@@ -4,6 +4,7 @@ import Appli.PluginDescriptor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import exception.DependencyNotEnabledException;
 
 import java.io.File;
 import java.io.IOException;
@@ -88,15 +89,20 @@ public class Loader {
 
     public Object getPlugin(PluginDescriptor pluginDescriptor) {
         if (!this.pluginInstances.containsKey(pluginDescriptor.name())) {
-            this.pluginInstances.put(pluginDescriptor.name(), loadPlugin(pluginDescriptor));
+            try {
+                Object plugin = loadPlugin(pluginDescriptor);
+                this.pluginInstances.put(pluginDescriptor.name(), plugin);
+            } catch (DependencyNotEnabledException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         return this.pluginInstances.get(pluginDescriptor.name());
     }
-    
+
     public List<PluginDescriptor> loadAllPluginDescriptors() {
         File directory = new File("src/Appli/data");
-        List<PluginDescriptor> allPluginDescriptors = new ArrayList<PluginDescriptor>();
+        List<PluginDescriptor> allPluginDescriptors = new ArrayList<>();
         if (!directory.exists() || !directory.isDirectory()) {
             System.err.println("Le répertoire spécifié n'existe pas.");
             return allPluginDescriptors;
@@ -120,91 +126,113 @@ public class Loader {
                 }
             }
         }
-		return allPluginDescriptors;
+        return allPluginDescriptors;
     }
 
     public List<PluginDescriptor> getPluginDescriptors() {
-		return pluginDescriptors;
-	}
+        return pluginDescriptors;
+    }
 
-	public Map<String, Object> getPluginInstances() {
-		return pluginInstances;
-	}
+    public Map<String, Object> getPluginInstances() {
+        return pluginInstances;
+    }
 
-	private PluginDescriptor loadPluginDescriptor(JsonNode jsonNode) {
-		List<String> dependencies = new ArrayList<>();
-	    ArrayNode dependencyNode = (ArrayNode) jsonNode.get("dependencyList");
-	    if (dependencyNode != null) {
-	        for (JsonNode categoryNode : dependencyNode) {
-	        	dependencies.add(categoryNode.asText());
-	        }
-	    }
-		
+    private PluginDescriptor loadPluginDescriptor(JsonNode jsonNode) {
+        List<String> dependencies = new ArrayList<>();
+        ArrayNode dependencyNode = (ArrayNode) jsonNode.get("dependencyList");
+        if (dependencyNode != null) {
+            for (JsonNode categoryNode : dependencyNode) {
+                dependencies.add(categoryNode.asText());
+            }
+        }
+
+        Map<String, String> additionalParameters = new HashMap<>();
+        JsonNode additionalParametersNode = jsonNode.get("additionalParameters");
+        if (additionalParametersNode != null) {
+            Iterator<Map.Entry<String, JsonNode>> fieldsIterator = additionalParametersNode.fields();
+            while (fieldsIterator.hasNext()) {
+                Map.Entry<String, JsonNode> field = fieldsIterator.next();
+                additionalParameters.put(field.getKey(), field.getValue().asText());
+            }
+        }
+
         return new PluginDescriptor(
                 jsonNode.get("name").asText(),
                 jsonNode.get("description").asText(),
                 dependencies,
                 jsonNode.get("enabled").asBoolean(),
-                jsonNode.get("classPath").asText()
+                jsonNode.get("classPath").asText(),
+                additionalParameters
         );
     }
 
-    private Object loadPlugin(PluginDescriptor pluginDescriptor) {
+    private Object loadPlugin(PluginDescriptor pluginDescriptor) throws DependencyNotEnabledException {
         try {
             Object plugin = Class.forName(pluginDescriptor.classPath()).getConstructor().newInstance();
-            Object dependencyPlugin = null;
             for (String dependency : pluginDescriptor.dependenciesList()) {
-                if (!this.pluginInstances.containsKey(dependency)) {
-                    PluginDescriptor dependencyDescriptor = findPluginDescriptorByName(dependency);
-                    if (dependencyDescriptor == null) {
-                        File dependencyFile = new File("src/Appli/data/" + dependency + ".json");
-                        if (dependencyFile.exists() && dependencyFile.isFile()) {
-                            JsonNode dependencyJson = objectMapper.readTree(dependencyFile);
-                            dependencyDescriptor = loadPluginDescriptor(dependencyJson);
-                            this.pluginDescriptors.add(dependencyDescriptor);
-                        } else {
-                            System.err.println("Fichier JSON de la dépendance non trouvé: " + dependency);
-                            continue; 
-                        }
-                    }
-                    
-                    dependencyPlugin = Class.forName(dependencyDescriptor.classPath()).getConstructor().newInstance();
+                PluginDescriptor dependencyDescriptor = findPluginDescriptorByName(dependency);
+
+                if (dependencyDescriptor == null) {
+                    throw new DependencyNotEnabledException("La classe " + dependency + " n'est pas active.");
+                }
+
+                if (this.pluginInstances.get(dependencyDescriptor.name()) == null) {
+                    Object dependencyPlugin = this.loadPlugin(dependencyDescriptor);
                     this.pluginInstances.put(dependency, dependencyPlugin);
-                } else {
-                	dependencyPlugin = this.pluginInstances.get(dependency);
-                }
-                
-                String dependencyClassName = dependencyPlugin.getClass().getSimpleName();
-                String setterMethodName = "set" + dependencyClassName;
-                Method setterMethod = null;
-                try {
-                	Class<?> dependencyInterface = dependencyPlugin.getClass().getInterfaces()[0];
-                    setterMethod = plugin.getClass().getMethod(setterMethodName, dependencyInterface);
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                    throw new RuntimeException("Échec lors de la récuperation de la méthode" + setterMethodName);
-                }
-                
-                if (setterMethod != null) {
-                    try {
-                        setterMethod.invoke(plugin, dependencyPlugin);
-                    } catch (Exception e) {
-                        e.printStackTrace(); 
-                        throw new RuntimeException("Échec lors de l'appel à la méthode" + setterMethodName);
-                    }
                 }
             }
-            
+
+            this.setDependencies(pluginDescriptor, plugin);
+
+            this.setPluginParameters(pluginDescriptor, plugin);
+
             return plugin;
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                  | InvocationTargetException | NoSuchMethodException | SecurityException
-                 | ClassNotFoundException | IOException e) {
+                 | ClassNotFoundException e) {
             System.err.println("Erreur de chargement du plugin: " + e.getMessage());
         }
 
         return null;
     }
-    
+
+    private void setDependencies(PluginDescriptor pluginDescriptor, Object instance) {
+        for (String dependency : pluginDescriptor.dependenciesList()) {
+
+            String setterMethodName = "set" + dependency;
+            Method setterMethod;
+            try {
+                Class<?> dependencyInterface = this.pluginInstances.get(dependency).getClass().getInterfaces()[0];
+                setterMethod = instance.getClass().getMethod(setterMethodName, dependencyInterface);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException("Échec lors de la récuperation de la méthode: " + setterMethodName);
+            }
+
+            try {
+                Object dependencyInstance = this.pluginInstances.get(dependency);
+                setterMethod.invoke(instance, dependencyInstance);
+            } catch (Exception e) {
+                throw new RuntimeException("Échec lors de l'appel à la méthode: " + setterMethodName);
+            }
+        }
+    }
+
+    private void setPluginParameters(PluginDescriptor pluginDescriptor, Object plugin) {
+        String setterMethodName = "setParameters";
+        Method setterMethod;
+        try {
+            setterMethod = plugin.getClass().getMethod("setParameters", Map.class);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException("Échec lors de la récuperation de la méthode: " + setterMethodName);
+        }
+
+        try {
+            setterMethod.invoke(plugin, pluginDescriptor.additionalParameters());
+        } catch (Exception e) {
+            throw new RuntimeException("Échec lors de l'appel à la méthode: " + setterMethodName);
+        }
+    }
+
     private PluginDescriptor findPluginDescriptorByName(String descriptorName) {
         for (PluginDescriptor descriptor : this.pluginDescriptors) {
             if (descriptor.name().equals(descriptorName)) {
