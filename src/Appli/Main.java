@@ -139,9 +139,12 @@ public class Main {
                 JButton button = new JButton(descriptor.name());
                 button.addActionListener(e -> {
                 	// appel des methodes execute 
-                	feature = (IPluginInterface) loader.getPlugin(descriptor);
-                	commandes = feature.executePlugin(commandes, Integer.parseInt(eventDuration.getText()));
-                	buidlPanel(table,commandes);
+                	if (Integer.parseInt(eventDuration.getText()) > 0) {
+                		feature = (IPluginInterface) loader.getPlugin(descriptor);
+                    	commandes = feature.executePlugin(commandes, Integer.parseInt(eventDuration.getText()));
+                    	buidlPanel(table,commandes);
+                	}
+                	
              
                 });
                 totalPanel.add(button);
