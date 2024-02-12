@@ -1,5 +1,6 @@
 package plugins;
 
+import Appli.Plugin;
 import Appli.data.Commande;
 import interfaces.IPluginInterface;
 import util.DateFormat;
@@ -9,9 +10,9 @@ import java.awt.*;
 import java.text.ParseException;
 import java.util.List;
 
-public class DialogCommandeAdder implements IPluginInterface {
+public class DialogCommandeAdder extends Plugin implements IPluginInterface {
     @Override
-    public List<Commande> executePlugin(List<Commande> listeCommande, Integer eventDuration) {
+    public List<Commande> executePlugin(List<Commande> listeCommande) {
         JDialog dialog = new JDialog();
         dialog.setModal(true);
         dialog.setTitle("Choisir une méthode d'export");

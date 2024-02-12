@@ -1,5 +1,6 @@
 package plugins;
 
+import Appli.Plugin;
 import Appli.data.Commande;
 import interfaces.CommandeImporterInterface;
 import util.DateFormat;
@@ -8,7 +9,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
-public class StaticCommandeImporter implements CommandeImporterInterface {
+public class StaticCommandeImporter extends Plugin implements CommandeImporterInterface {
     @Override
     public List<Commande> importCommandes() {
         return List.of(

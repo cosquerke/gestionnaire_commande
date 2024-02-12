@@ -1,6 +1,8 @@
 package plugins;
 
+import Appli.Plugin;
 import Appli.data.Commande;
+import exception.MissingParameterException;
 import interfaces.CommandeImporterInterface;
 
 import java.io.BufferedReader;
@@ -12,18 +14,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CSVCommandeImporter implements CommandeImporterInterface {
+public class CSVCommandeImporter extends Plugin implements CommandeImporterInterface {
     @Override
-    public List<Commande> importCommandes() {
+    public List<Commande> importCommandes() throws MissingParameterException {
         List<Commande> commandes = new ArrayList<>();
 
-        String filepath = "src/Appli/data/commandes.csv";
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+        if (!this.parameters.containsKey("file")) {
+            throw new MissingParameterException("Le paramètre file est nécessaire pour exécuter le plugin.");
+        }
+
+        String filename = this.parameters.get("file");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
 
             // Ignorer la première ligne (en-tête)
             br.readLine();
-            
+
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(";");
 

@@ -4,5 +4,7 @@
   "dependencyList": ["TransportationCost","ProductionCost","StrikeEvent"],
   "enabled": true,
   "classPath": "plugins.StrikeSimulation",
-  "additionalParameters": {}
+  "additionalParameters": {
+    "eventDuration": "3"
+  }
 }

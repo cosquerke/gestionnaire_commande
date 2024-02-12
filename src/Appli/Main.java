@@ -1,6 +1,7 @@
 package Appli;
 
 import Appli.data.Commande;
+import exception.MissingParameterException;
 import interfaces.CommandeExporterInterface;
 import interfaces.CommandeImporterInterface;
 import interfaces.IPluginInterface;
@@ -58,7 +59,11 @@ public class Main {
                 System.exit(0);
             }
 
-            commandes = importer.importCommandes();
+            try {
+                commandes = importer.importCommandes();
+            } catch (MissingParameterException e) {
+                throw new RuntimeException(e);
+            }
 
             JFrame frame = new JFrame("Gestion commandes");
             frame.setSize(1200, 800);
@@ -88,10 +93,14 @@ public class Main {
             List<PluginDescriptor> exporterDescriptors = loader.getPluginDescriptorsForInterface(CommandeExporterInterface.class);
             for (PluginDescriptor descriptor : exporterDescriptors) {
                 JButton button = new JButton(descriptor.description());
-                button.addActionListener(e -> {
+                button.addActionListener(event -> {
                     exporter = (CommandeExporterInterface) loader.getPlugin(descriptor);
 
-                    exporter.exportCommandes(commandes);
+                    try {
+                        exporter.exportCommandes(commandes);
+                    } catch (MissingParameterException e) {
+                        System.out.println(e.getMessage());
+                    }
                     exporterDialog.dispose();
                 });
                 exporterDialog.add(button);
@@ -114,13 +123,17 @@ public class Main {
             List<PluginDescriptor> featuresDescriptors = loader.getPluginDescriptorsForInterface(IPluginInterface.class);
             for (PluginDescriptor descriptor : featuresDescriptors) {
                 JButton button = new JButton(descriptor.name());
-                button.addActionListener(e -> {
+                button.addActionListener(event -> {
                 	// appel des méthodes execute
                     if (Integer.parseInt(eventDuration.getText()) >= 0) {
                         IPluginInterface plugin = (IPluginInterface) loader.getPlugin(descriptor);
 
                         if (null != plugin) {
-                            commandes = plugin.executePlugin(commandes, Integer.parseInt(eventDuration.getText()));
+                            try {
+                                commandes = plugin.executePlugin(commandes);
+                            } catch (MissingParameterException e) {
+                                System.out.println(e.getMessage());
+                            }
                             buildPanel(table,commandes);
                         }
                     }

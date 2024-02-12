@@ -4,5 +4,7 @@
   "dependencyList": ["TransportationCost","ProductionCost","StormEvent"],
   "enabled": true,
   "classPath": "plugins.StormSimulation",
-  "additionalParameters": {}
+  "additionalParameters": {
+    "eventDuration": "3"
+  }
 }

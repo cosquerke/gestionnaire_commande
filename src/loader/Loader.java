@@ -1,10 +1,12 @@
 package loader;
 
+import Appli.Plugin;
 import Appli.PluginDescriptor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import exception.DependencyNotEnabledException;
+import interfaces.IPluginInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -239,7 +241,9 @@ public class Loader {
 
             this.setDependencies(pluginDescriptor, plugin);
 
-            this.setPluginParameters(pluginDescriptor, plugin);
+            if (Plugin.class.isAssignableFrom(plugin.getClass())) {
+                this.setPluginParameters(pluginDescriptor, plugin);
+            }
 
             return plugin;
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
@@ -251,6 +255,12 @@ public class Loader {
         return null;
     }
 
+    /**
+     * Set les instances des dépendances pour le plugin donné
+     *
+     * @param pluginDescriptor le descripteur du plugin sur lequel ajouter les dépendances
+     * @param instance l'instance du plugin sur lequel set les dépendances
+     */
     private void setDependencies(PluginDescriptor pluginDescriptor, Object instance) {
         for (String dependency : pluginDescriptor.dependenciesList()) {
 
@@ -272,6 +282,12 @@ public class Loader {
         }
     }
 
+    /**
+     * Donne au plugin les paramètres additionnels contenus dans le descripteur de plugin.
+     *
+     * @param pluginDescriptor le descripteur du plugin à paramétrer
+     * @param plugin le plugin à paramétrer
+     */
     private void setPluginParameters(PluginDescriptor pluginDescriptor, Object plugin) {
         String setterMethodName = "setParameters";
         Method setterMethod;

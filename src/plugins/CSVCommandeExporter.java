@@ -1,18 +1,27 @@
 package plugins;
 
+import Appli.Plugin;
 import Appli.data.Commande;
+import exception.MissingParameterException;
 import interfaces.CommandeExporterInterface;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
-public class CSVCommandeExporter implements CommandeExporterInterface {
+public class CSVCommandeExporter extends Plugin implements CommandeExporterInterface {
     @Override
-    public void exportCommandes(List<Commande> commandes) {
+    public void exportCommandes(List<Commande> commandes) throws MissingParameterException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        try (PrintWriter writer = new PrintWriter("src/Appli/data/commandes.csv")) {
+        if (!this.parameters.containsKey("file")) {
+            throw new MissingParameterException("Le paramètre file est nécessaire pour exécuter le plugin.");
+        }
+
+        String filename = this.parameters.get("file");
+
+        try (PrintWriter writer = new PrintWriter(filename)) {
             // En-tête du CSV
             writer.println("id;type;description;order_date;expedition_date;expected_delivery_date;production_cost;transportation_cost;vat_fees;price;is_delivered;departure_country;arrival_country;transportation_mode");
 
@@ -36,7 +45,7 @@ public class CSVCommandeExporter implements CommandeExporterInterface {
                 writer.println(sb);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
