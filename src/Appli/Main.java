@@ -116,7 +116,7 @@ public class Main {
                 JButton button = new JButton(descriptor.name());
                 button.addActionListener(e -> {
                 	// appel des méthodes execute
-                    if (Integer.parseInt(eventDuration.getText()) > 0) {
+                    if (Integer.parseInt(eventDuration.getText()) >= 0) {
                         IPluginInterface feature = (IPluginInterface) loader.getPlugin(descriptor);
                         commandes = feature.executePlugin(commandes, Integer.parseInt(eventDuration.getText()));
                         buildPanel(table,commandes);
@@ -124,13 +124,11 @@ public class Main {
                 });
                 totalPanel.add(button);
             }
-            
 
             // Add the components to the frame
             frame.add(scrollPane, BorderLayout.CENTER);
             frame.add(buttonPanel, BorderLayout.NORTH);
             frame.add(totalPanel, BorderLayout.SOUTH);
-
             frame.setLocationRelativeTo(null); // Centrer la fenêtre
             frame.setVisible(true);
             
