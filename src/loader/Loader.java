@@ -167,7 +167,7 @@ public class Loader {
                             continue; 
                         }
                     }
-                    Object dependencyUnusable = loadPlugin(dependencyDescriptor);
+                    loadPlugin(dependencyDescriptor);
                     dependencyPlugin = Class.forName(dependencyDescriptor.classPath()).getConstructor().newInstance();
                     this.pluginInstances.put(dependency, dependencyPlugin);
                 } else {
