@@ -2,7 +2,7 @@
   "name": "StrikeEvent",
   "description": "Simuler l'impact d'une grève sur les délais de livraison",
   "dependencyList": [],
-  "enabled": false,
+  "enabled": true,
   "classPath": "plugins.StrikeEvent",
   "additionalParameters": {}
 }

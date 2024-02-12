@@ -199,10 +199,4 @@ public class Commande implements Cloneable{
 				+ ", departure_country=" + departure_country + ", arrival_country=" + arrival_country
 				+ ", transportation_mode=" + transportation_mode + "]";
 	}
-	
-	
-	
-
-
-
 }

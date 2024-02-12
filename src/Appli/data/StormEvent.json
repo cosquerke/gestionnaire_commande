@@ -2,7 +2,7 @@
   "name": "StormEvent",
   "description": "Simuler l'impact d'une tempête sur les délais de livraison",
   "dependencyList": [],
-  "enabled": false,
+  "enabled": true,
   "classPath": "plugins.StormEvent",
   "additionalParameters": {}
 }

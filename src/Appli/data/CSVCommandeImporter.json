@@ -4,5 +4,7 @@
   "dependencyList": [],
   "enabled": true,
   "classPath": "plugins.CSVCommandeImporter",
-  "additionalParameters": {}
+  "additionalParameters": {
+    "file": "src/Appli/data/commandes.csv"
+  }
 }
