@@ -1,8 +1,8 @@
 {
-  "name": "DialogCommandeAdder",
+  "name": "CommandeAdder",
   "description": "Ajout de commande",
   "dependencyList": [],
   "enabled": true,
-  "classPath": "plugins.DialogCommandeAdder",
+  "classPath": "plugins.CommandeAdder",
   "additionalParameters": {}
 }

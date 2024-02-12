@@ -10,10 +10,10 @@ import Appli.data.Commande;
 import exception.MissingParameterException;
 import interfaces.ICost;
 import interfaces.IDeliveryDate;
-import interfaces.IPluginInterface;
+import interfaces.CommandePluginInterface;
 import interfaces.ISimulateEvent;
 
-public class StrikeSimulation extends Plugin implements ISimulateEvent, IPluginInterface {
+public class StrikeSimulation extends Plugin implements ISimulateEvent, CommandePluginInterface {
 
 	private IDeliveryDate strikeEvent;
 	private ICost transportationCost;

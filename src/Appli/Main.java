@@ -4,8 +4,8 @@ import Appli.data.Commande;
 import exception.MissingParameterException;
 import interfaces.CommandeExporterInterface;
 import interfaces.CommandeImporterInterface;
-import interfaces.IPluginInterface;
-import interfaces.IPluginMonitorFrame;
+import interfaces.CommandePluginInterface;
+import interfaces.PluginMonitorInterface;
 import loader.Loader;
 import plugins.component.CommandeTableModel;
 import plugins.component.DeleteButtonEditor;
@@ -20,23 +20,42 @@ import java.util.List;
 public class Main {
     private static CommandeImporterInterface importer;
     private static CommandeExporterInterface exporter;
+    private static PluginMonitorInterface monitor;
 
     private static List<Commande> commandes;
 
     public static void main(String[] args) {
         Loader loader = Loader.getInstance();
 
-        List<PluginDescriptor> monitoringFrameDescriptors = loader.getPluginDescriptorsForInterface(IPluginMonitorFrame.class);
-        IPluginMonitorFrame monitorFrame = (IPluginMonitorFrame) loader.getPlugin(monitoringFrameDescriptors.get(0));
-        
-        monitorFrame.setPlugins();
-        monitorFrame.display();
-        
+        List<PluginDescriptor> monitorDescriptors = loader.getPluginDescriptorsForInterface(PluginMonitorInterface.class);
+        if (!monitorDescriptors.isEmpty()) {
+            JDialog monitorChoiceDialog = new JDialog();
+            monitorChoiceDialog.setModal(true);
+            monitorChoiceDialog.setTitle("Choisir un moniteur");
+            monitorChoiceDialog.setLayout(new FlowLayout());
+            monitorChoiceDialog.setLocationRelativeTo(null);
+            monitorChoiceDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+            for (PluginDescriptor descriptor : monitorDescriptors) {
+                JButton button = new JButton(descriptor.name());
+                button.addActionListener(e -> {
+                    monitor = (PluginMonitorInterface) loader.getPlugin(descriptor);
+
+                    monitorChoiceDialog.dispose();
+                });
+                monitorChoiceDialog.add(button);
+            }
+            monitorChoiceDialog.pack();
+            monitorChoiceDialog.setVisible(true);
+
+            monitor.setPlugins();
+            monitor.display();
+        }
+
         SwingUtilities.invokeLater(() -> {
             JDialog importerDialog = new JDialog();
             importerDialog.setModal(true);
             importerDialog.setTitle("Choisir une méthode d'import");
-            importerDialog.setSize(400, 100);
             importerDialog.setLayout(new FlowLayout());
             importerDialog.setLocationRelativeTo(null);
             importerDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -52,6 +71,7 @@ public class Main {
                 });
                 importerDialog.add(button);
             }
+            importerDialog.pack();
             importerDialog.setVisible(true);
 
             if (null == importer) {
@@ -85,7 +105,6 @@ public class Main {
             JDialog exporterDialog = new JDialog();
             exporterDialog.setModal(true);
             exporterDialog.setTitle("Choisir une méthode d'export");
-            exporterDialog.setSize(400, 100);
             exporterDialog.setLayout(new FlowLayout());
             exporterDialog.setLocationRelativeTo(null);
             exporterDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -105,64 +124,62 @@ public class Main {
                 });
                 exporterDialog.add(button);
             }
+            exporterDialog.pack();
 
             JButton exportButton = new JButton("Exporter");
             buttonPanel.add(exportButton);
             exportButton.addActionListener(e -> exporterDialog.setVisible(true));
 
             // Create a panel for the bottom totals
-            JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));      
-            
-            JLabel labelEventDuration = new JLabel("Event duration :");
-            totalPanel.add(labelEventDuration);
-            JTextField eventDuration = new JTextField();
-            eventDuration.setText("0");
-            eventDuration.setPreferredSize(new Dimension(50, eventDuration.getPreferredSize().height));
-            totalPanel.add(eventDuration);
-            
-            List<PluginDescriptor> featuresDescriptors = loader.getPluginDescriptorsForInterface(IPluginInterface.class);
-            for (PluginDescriptor descriptor : featuresDescriptors) {
-                JButton button = new JButton(descriptor.name());
-                button.addActionListener(event -> {
-                	// appel des méthodes execute
-                    if (Integer.parseInt(eventDuration.getText()) >= 0) {
-                        IPluginInterface plugin = (IPluginInterface) loader.getPlugin(descriptor);
+            JPanel pluginPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-                        if (null != plugin) {
-                            try {
-                                commandes = plugin.executePlugin(commandes);
-                            } catch (MissingParameterException e) {
-                                System.out.println(e.getMessage());
-                            }
-                            buildPanel(table,commandes);
+            List<PluginDescriptor> featuresDescriptors = loader.getPluginDescriptorsForInterface(CommandePluginInterface.class);
+            for (PluginDescriptor descriptor : featuresDescriptors) {
+                JButton button = getPluginButton(descriptor, loader, table);
+                pluginPanel.add(button);
+            }
+
+            frame.add(scrollPane, BorderLayout.CENTER);
+            frame.add(buttonPanel, BorderLayout.NORTH);
+            frame.add(pluginPanel, BorderLayout.SOUTH);
+            frame.setLocationRelativeTo(null); // Centrer la fenêtre
+            frame.setVisible(true);
+
+            if (monitor != null) {
+                Thread updateThread = new Thread(() -> {
+                    while (!Thread.currentThread().isInterrupted()) {
+                        monitor.setPlugins();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
                         }
                     }
                 });
-                totalPanel.add(button);
+                updateThread.start();
             }
-
-            // Add the components to the frame
-            frame.add(scrollPane, BorderLayout.CENTER);
-            frame.add(buttonPanel, BorderLayout.NORTH);
-            frame.add(totalPanel, BorderLayout.SOUTH);
-            frame.setLocationRelativeTo(null); // Centrer la fenêtre
-            frame.setVisible(true);
-            
-            Thread updateThread = new Thread(() -> {
-                while (!Thread.currentThread().isInterrupted()) {
-                    monitorFrame.setPlugins();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-                }
-            });
-            updateThread.start();
         });
-        
+
     }
-    
+
+    private static JButton getPluginButton(PluginDescriptor descriptor, Loader loader, JTable table) {
+        JButton button = new JButton(descriptor.name());
+        button.addActionListener(event -> {
+            // appel des méthodes execute
+            CommandePluginInterface plugin = (CommandePluginInterface) loader.getPlugin(descriptor);
+
+            if (null != plugin) {
+                try {
+                    commandes = plugin.executePlugin(commandes);
+                } catch (MissingParameterException e) {
+                    System.out.println(e.getMessage());
+                }
+                buildPanel(table,commandes);
+            }
+        });
+        return button;
+    }
+
     public static void buildPanel(JTable table, List<Commande> commandes) {
     	CommandeTableModel new_model = new CommandeTableModel(commandes);
     	table.setModel(new_model);

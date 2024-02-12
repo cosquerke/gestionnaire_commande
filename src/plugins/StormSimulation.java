@@ -10,10 +10,10 @@ import Appli.data.Commande;
 import exception.MissingParameterException;
 import interfaces.ICost;
 import interfaces.IDeliveryDate;
-import interfaces.IPluginInterface;
+import interfaces.CommandePluginInterface;
 import interfaces.ISimulateEvent;
 
-public class StormSimulation extends Plugin implements ISimulateEvent, IPluginInterface {
+public class StormSimulation extends Plugin implements ISimulateEvent, CommandePluginInterface {
 
 	private IDeliveryDate stormEvent;
 	private ICost transportationCost;

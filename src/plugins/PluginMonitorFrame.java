@@ -19,12 +19,12 @@ import javax.swing.JScrollPane;
 import Appli.PluginDescriptor;
 import Appli.PluginMonitoring;
 
-import interfaces.IPluginMonitorFrame;
+import interfaces.PluginMonitorInterface;
 import loader.Loader;
 
 
 @SuppressWarnings("serial")
-public class PluginMonitorFrame extends JFrame implements IPluginMonitorFrame{
+public class PluginMonitorFrame extends JFrame implements PluginMonitorInterface {
   
 	private List<PluginMonitoring> pluginsMonitoring;
 	

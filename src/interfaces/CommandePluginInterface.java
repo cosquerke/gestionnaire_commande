@@ -8,7 +8,7 @@ import exception.MissingParameterException;
 /**
  * L'interface définit une méthode pour l'exécution d'un plugin sur une liste de commandes.
  */
-public interface IPluginInterface {
+public interface CommandePluginInterface {
     /**
      * Exécute le plugin sur la liste de commandes spécifiée.
      * @param listeCommande La liste de commandes sur laquelle exécuter le plugin.

@@ -5,6 +5,7 @@
   "enabled": true,
   "classPath": "plugins.CSVCommandeExporter",
   "additionalParameters": {
-    "file": "src/Appli/data/commandes.csv"
+    "file": "src/Appli/data/commandes.csv",
+    "test": "test"
   }
 }

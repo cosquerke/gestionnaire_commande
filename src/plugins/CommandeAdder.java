@@ -2,7 +2,7 @@ package plugins;
 
 import Appli.Plugin;
 import Appli.data.Commande;
-import interfaces.IPluginInterface;
+import interfaces.CommandePluginInterface;
 import util.DateFormat;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.text.ParseException;
 import java.util.List;
 
-public class DialogCommandeAdder extends Plugin implements IPluginInterface {
+public class CommandeAdder extends Plugin implements CommandePluginInterface {
     @Override
     public List<Commande> executePlugin(List<Commande> listeCommande) {
         JDialog dialog = new JDialog();
