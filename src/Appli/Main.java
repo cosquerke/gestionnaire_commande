@@ -131,6 +131,7 @@ public class Main {
             totalPanel.add(labelEventDuration);
             JTextField eventDuration = new JTextField();
             eventDuration.setText("0");
+            eventDuration.setPreferredSize(new Dimension(50, eventDuration.getPreferredSize().height));
             totalPanel.add(eventDuration);
             
             List<PluginDescriptor> featuresDescriptors = loader.getPluginDescriptorsForInterface(IPluginInterface.class);
