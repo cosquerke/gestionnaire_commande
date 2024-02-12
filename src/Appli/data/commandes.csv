@@ -1,102 +1,101 @@
 id;type;description;order_date;expedition_date;expected_delivery_date;production_cost;transportation_cost;vat_fees;price;is_delivered;departure_country;arrival_country;transportation_mode
-1;Électronique;Smartphone;2023-01-10;2023-01-15;2023-01-30;250;20;50;400;true;Chine;États-Unis;Aérien
-2;Vêtements;Veste en cuir;2023-02-05;2023-02-10;2023-02-25;80;15;20;150;false;Italie;France;Maritime
-3;Électroménager;Machine à laver;2023-03-20;2023-03-25;2023-04-10;350;30;70;500;false;Allemagne;Royaume-Uni;Terrestre
-4;Livres;Collection de poésie;2023-04-12;2023-04-15;2023-04-30;40;10;5;70;true;Espagne;Mexique;Aérien
-5;Sport;Équipement de camping;2023-05-08;2023-05-12;2023-05-28;120;25;15;180;false;Canada;Australie;Maritime
-6;Électronique;Casque sans fil;2023-06-03;2023-06-10;2023-06-25;120;10;30;200;false;Corée du Sud;Brésil;Aérien
-7;Vêtements;Robe de soirée;2023-07-15;2023-07-20;2023-08-05;150;20;25;220;false;France;Canada;Terrestre
-8;Électroménager;Réfrigérateur;2023-08-02;2023-08-08;2023-08-25;400;40;80;550;false;Japon;Allemagne;Maritime
-9;Livres;Roman policier;2023-09-18;2023-09-25;2023-10-10;30;5;3;50;true;Italie;États-Unis;Aérien
-10;Sport;Raquettes de tennis;2023-10-12;2023-10-18;2023-11-02;90;15;10;120;false;Australie;France;Terrestre
-11;Électronique;Caméra DSLR;2023-11-25;2023-12-02;2023-12-18;300;25;60;450;false;États-Unis;Chine;Aérien
-12;Vêtements;Chaussures de sport;2023-12-10;2023-12-15;2023-12-30;60;12;15;100;true;Royaume-Uni;Australie;Maritime
-13;Électroménager;Cafetière;2024-01-05;2024-01-10;2024-01-25;70;8;20;100;false;Brésil;Espagne;Terrestre
-14;Livres;Guide de voyage;2024-02-20;2024-02-25;2024-03-10;20;5;2;30;true;Canada;Japon;Aérien
-15;Sport;Planche de surf;2024-03-15;2024-03-20;2024-04-05;150;30;25;220;false;Australie;États-Unis;Maritime
-16;Électronique;Enceinte Bluetooth;2024-04-08;2024-04-15;2024-04-30;80;10;15;120;false;Chine;France;Aérien
-17;Vêtements;Costume formel;2024-05-20;2024-05-25;2024-06-10;100;18;30;160;true;Italie;Royaume-Uni;Terrestre
-18;Électroménager;Aspirateur robot;2024-06-03;2024-06-10;2024-06-25;200;20;40;300;false;Allemagne;Canada;Maritime
-19;Livres;Biographie;2024-07-15;2024-07-20;2024-08-05;25;5;3;40;true;Espagne;Brésil;Aérien
-20;Sport;Tapis de yoga;2024-08-02;2024-08-08;2024-08-25;40;8;5;60;false;Japon;Corée du Sud;Terrestre
-21;Électronique;Laptop;2024-09-18;2024-09-25;2024-10-10;600;40;90;750;false;Chine;États-Unis;Aérien
-22;Vêtements;Écharpe en laine;2024-10-12;2024-10-18;2024-11-02;20;5;2;30;true;France;Italie;Maritime
-23;Électroménager;Fer à repasser;2024-11-05;2024-11-12;2024-11-28;30;8;5;45;false;Allemagne;Royaume-Uni;Terrestre
-24;Livres;Dictionnaire multilingue;2024-12-20;2024-12-25;2025-01-10;35;5;2;45;true;Espagne;Mexique;Aérien
-25;Sport;Haltères;2025-01-15;2025-01-22;2025-02-06;50;10;8;75;false;Canada;Australie;Maritime
-26;Électronique;Imprimante;2025-02-08;2025-02-15;2025-03-02;120;15;30;180;true;Corée du Sud;Brésil;Aérien
-27;Vêtements;Jean délavé;2025-03-22;2025-03-28;2025-04-12;40;8;10;60;false;Italie;France;Terrestre
-28;Électroménager;Four à micro-ondes;2025-04-10;2025-04-15;2025-04-30;80;12;15;120;false;Japon;Allemagne;Maritime
-29;Livres;Livre d'art;2025-05-25;2025-05-30;2025-06-14;60;10;5;80;true;Brésil;Espagne;Aérien
-30;Sport;Gants de boxe;2025-06-12;2025-06-18;2025-07-03;35;7;5;50;false;Australie;France;Terrestre
-31;Électronique;Lunettes de réalité virtuelle;2025-07-20;2025-07-25;2025-08-09;180;15;30;250;false;États-Unis;Chine;Aérien
-32;Vêtements;T-shirt graphique;2025-08-10;2025-08-15;2025-08-30;15;4;3;25;true;Royaume-Uni;Australie;Maritime
-33;Électroménager;Batteur électrique;2025-09-25;2025-10-02;2025-10-18;40;8;10;60;false;Brésil;Espagne;Terrestre
-34;Livres;Carnet de croquis;2025-10-15;2025-10-20;2025-11-04;25;5;2;35;true;Canada;Japon;Aérien
-35;Sport;Ballon de football;2025-11-08;2025-11-15;2025-11-30;30;6;5;45;false;Australie;États-Unis;Maritime
-36;Électronique;Montre connectée;2025-12-02;2025-12-10;2025-12-25;120;12;25;160;true;Chine;France;Aérien
-37;Vêtements;Chapeau de soleil;2026-01-18;2026-01-25;2026-02-09;18;3;2;25;false;Italie;France;Terrestre
-38;Électroménager;Grille-pain;2026-02-05;2026-02-12;2026-02-28;25;5;5;35;false;Allemagne;Royaume-Uni;Maritime
-39;Livres;BD humoristique;2026-03-22;2026-03-28;2026-04-12;20;4;2;30;true;Espagne;Mexique;Aérien
-40;Sport;Bouteille d'eau réutilisable;2026-04-10;2026-04-15;2026-04-30;10;2;1;15;false;Canada;Australie;Terrestre
-41;Électronique;Enceinte intelligente;2026-05-25;2026-05-30;2026-06-14;70;8;15;100;true;Corée du Sud;Brésil;Aérien
-42;Vêtements;Chemise à carreaux;2026-06-12;2026-06-18;2026-07-03;35;7;5;50;false;Italie;France;Terrestre
-43;Électroménager;Mixeur;2026-07-20;2026-07-25;2026-08-09;45;10;10;65;false;Japon;Allemagne;Maritime
-44;Livres;Guide de jardinage;2026-08-10;2026-08-15;2026-08-30;28;5;3;40;true;France;Royaume-Uni;Aérien
-45;Sport;Tapis de course;2026-09-25;2026-10-02;2026-10-18;300;30;50;400;false;Australie;États-Unis;Maritime
-46;Électronique;Casque antibruit;2026-10-15;2026-10-20;2026-11-04;90;10;20;120;true;États-Unis;Chine;Aérien
-47;Vêtements;Jupe en denim;2026-11-08;2026-11-15;2026-11-30;25;5;5;35;false;Royaume-Uni;Australie;Terrestre
-48;Électroménager;Robot de cuisine multifonction;2026-12-02;2026-12-10;2026-12-25;150;20;30;200;false;Brésil;Espagne;Aérien
-49;Livres;Recueil de poésie contemporaine;2027-01-18;2027-01-25;2027-02-09;30;6;4;45;true;Canada;Japon;Maritime
-50;Sport;Sac de sport;2027-02-05;2027-02-12;2027-02-28;20;4;3;30;false;Australie;États-Unis;Terrestre
-51;Électronique;Tablette;2027-03-22;2027-03-28;2027-04-12;180;15;30;250;false;États-Unis;Chine;Aérien
-52;Vêtements;Chemisier en soie;2027-04-10;2027-04-15;2027-04-30;35;8;10;55;true;France;Italie;Maritime
-53;Électroménager;Yaourtière;2027-05-25;2027-05-30;2027-06-14;40;8;10;60;false;Brésil;Espagne;Terrestre
-54;Livres;Roman de science-fiction;2027-06-12;2027-06-18;2027-07-03;25;5;3;35;true;Canada;Japon;Aérien
-55;Sport;Vélo de montagne;2027-07-20;2027-07-25;2027-08-09;250;30;40;350;false;Australie;États-Unis;Maritime
-56;Électronique;Clavier mécanique;2027-08-10;2027-08-15;2027-08-30;80;10;15;120;true;Chine;France;Aérien
-57;Vêtements;Short de plage;2027-09-25;2027-10-02;2027-10-18;20;4;3;30;false;Italie;France;Terrestre
-58;Électroménager;Machine à glaçons;2027-10-15;2027-10-20;2027-11-04;50;8;10;70;false;Allemagne;Royaume-Uni;Maritime
-59;Livres;Album de bande dessinée;2027-11-08;2027-11-15;2027-11-30;15;3;2;20;true;Espagne;Mexique;Aérien
-60;Sport;Raquettes de badminton;2027-12-02;2027-12-10;2027-12-25;30;6;5;45;false;Australie;France;Terrestre
-61;Électronique;Souris sans fil;2028-01-18;2028-01-25;2028-02-09;15;3;2;25;true;Corée du Sud;Brésil;Aérien
-62;Vêtements;Maillot de bain;2028-02-05;2028-02-12;2028-02-28;25;5;4;35;false;Italie;Espagne;Maritime
-63;Électroménager;Centrifugeuse;2028-03-22;2028-03-28;2028-04-12;40;8;10;60;false;Japon;Allemagne;Terrestre
-64;Livres;Thriller psychologique;2028-04-10;2028-04-15;2028-04-30;30;5;4;45;true;France;Royaume-Uni;Aérien
-65;Sport;Sac à dos de randonnée;2028-05-25;2028-05-30;2028-06-14;50;10;8;70;false;Australie;États-Unis;Maritime
-66;Électronique;Disque dur externe;2028-06-12;2028-06-18;2028-07-03;90;15;20;130;true;États-Unis;Chine;Aérien
-67;Vêtements;Pantalon de jogging;2028-07-20;2028-07-25;2028-08-09;30;5;3;40;false;Royaume-Uni;Australie;Terrestre
-68;Électroménager;Grille-pain à convection;2028-08-10;2028-08-15;2028-08-30;60;10;12;85;false;Brésil;Espagne;Maritime
-69;Livres;Livre de cuisine végétarienne;2028-09-25;2028-10-02;2028-10-18;25;4;3;35;true;Canada;Japon;Aérien
-70;Sport;Gourde isotherme;2028-10-15;2028-10-20;2028-11-04;20;3;2;30;false;Australie;États-Unis;Terrestre
-71;Électronique;Écouteurs sans fil;2028-11-08;2028-11-15;2028-11-30;40;8;10;60;true;Corée du Sud;France;Aérien
-72;Vêtements;Chemise en lin;2028-12-02;2028-12-10;2028-12-25;45;6;8;65;false;Italie;Espagne;Maritime
-73;Électroménager;Cuiseur à riz;2029-01-18;2029-01-25;2029-02-09;30;5;4;45;false;Japon;Allemagne;Terrestre
-74;Livres;Essai philosophique;2029-02-05;2029-02-12;2029-02-28;20;4;3;30;true;France;Royaume-Uni;Aérien
-75;Sport;Chaussures de randonnée;2029-03-22;2029-03-28;2029-04-12;70;10;15;100;false;Canada;États-Unis;Maritime
-76;Électronique;Imprimante 3D;2029-04-10;2029-04-15;2029-04-30;250;20;40;320;true;Chine;Allemagne;Aérien
-77;Vêtements;Blouse en coton;2029-05-25;2029-05-30;2029-06-14;25;4;3;35;false;Italie;France;Terrestre
-78;Électroménager;Hachoir à viande électrique;2029-06-12;2029-06-18;2029-07-03;40;6;8;60;false;Espagne;Mexique;Maritime
-79;Livres;Recueil de nouvelles;2029-07-20;2029-07-25;2029-08-09;18;3;2;25;true;Canada;Japon;Aérien
-80;Sport;Gant de baseball;2029-08-10;2029-08-15;2029-08-30;15;2;2;20;false;Australie;États-Unis;Terrestre
-81;Électronique;Lampe de bureau LED;2029-09-25;2029-10-02;2029-10-18;30;5;4;45;false;Corée du Sud;Brésil;Terrestre
-82;Vêtements;Pull en laine;2029-10-15;2029-10-20;2029-11-04;40;8;10;60;true;France;Royaume-Uni;Maritime
-83;Électroménager;Friteuse sans huile;2029-11-08;2029-11-15;2029-11-30;50;8;12;70;false;Allemagne;Royaume-Uni;Aérien
-84;Livres;Thriller politique;2029-12-02;2029-12-10;2029-12-25;25;4;3;35;true;Espagne;Mexique;Maritime
-85;Sport;Haltères ajustables;2030-01-18;2030-01-25;2030-02-09;70;10;15;100;false;Canada;États-Unis;Terrestre
-86;Électronique;Écouteurs antibruit;2030-02-05;2030-02-12;2030-02-28;60;8;12;80;false;Japon;Chine;Aérien
-87;Vêtements;Robe d'été;2030-03-22;2030-03-28;2030-04-12;30;6;5;45;true;Italie;France;Terrestre
-88;Électroménager;Batteur sur socle;2030-04-10;2030-04-15;2030-04-30;90;12;20;130;false;Brésil;Espagne;Maritime
-89;Livres;Livre d'histoire locale;2030-05-25;2030-05-30;2030-06-14;20;3;2;30;false;Australie;États-Unis;Aérien
-90;Sport;Tapis de yoga antidérapant;2030-06-12;2030-06-18;2030-07-03;15;3;2;25;true;Corée du Sud;Royaume-Uni;Terrestre
-91;Électronique;Stylo connecté;2030-07-20;2030-07-25;2030-08-09;40;5;8;60;false;France;Allemagne;Aérien
-92;Vêtements;Chaussettes en bambou;2030-08-10;2030-08-15;2030-08-30;10;2;1;15;true;Italie;Espagne;Maritime
-93;Électroménager;Presse-agrumes électrique;2030-09-25;2030-10-02;2030-10-18;25;4;3;35;false;Japon;Canada;Terrestre
-94;Livres;Guide de photographie;2030-10-15;2030-10-20;2030-11-04;35;5;4;50;true;Espagne;Mexique;Aérien
-95;Sport;Corde à sauter;2030-11-08;2030-11-15;2030-11-30;12;2;1;15;false;Canada;Australie;Maritime
-96;Électronique;Chargeur solaire;2030-12-02;2030-12-10;2030-12-25;50;8;10;70;false;Australie;États-Unis;Terrestre
-97;Vêtements;Sweat à capuche;2031-01-18;2031-01-25;2031-02-09;30;6;5;45;true;Royaume-Uni;France;Aérien
-98;Électroménager;Robot aspirateur;2031-02-05;2031-02-12;2031-02-28;120;15;25;160;false;Chine;Allemagne;Maritime
-99;Livres;Essai scientifique;2031-03-22;2031-03-28;2031-04-12;28;5;4;40;false;France;Japon;Terrestre
-100;Sport;Gant de musculation;2031-04-10;2031-04-15;2031-04-30;18;3;2;25;true;Brésil;Australie;Aérien
-
+1;Électronique;Smartphone;2023-01-10;2023-01-15;2023-01-30;250.0;20.0;50.0;400.0;true;Chine;États-Unis;Aérien
+2;Vêtements;Veste en cuir;2023-02-05;2023-02-10;2023-02-25;80.0;15.0;20.0;150.0;false;Italie;France;Maritime
+3;Électroménager;Machine à laver;2023-03-20;2023-03-25;2023-04-10;350.0;30.0;70.0;500.0;false;Allemagne;Royaume-Uni;Terrestre
+4;Livres;Collection de poésie;2023-04-12;2023-04-15;2023-04-30;40.0;10.0;5.0;70.0;true;Espagne;Mexique;Aérien
+5;Sport;Équipement de camping;2023-05-08;2023-05-12;2023-05-28;120.0;25.0;15.0;180.0;false;Canada;Australie;Maritime
+6;Électronique;Casque sans fil;2023-06-03;2023-06-10;2023-06-25;120.0;10.0;30.0;200.0;false;Corée du Sud;Brésil;Aérien
+7;Vêtements;Robe de soirée;2023-07-15;2023-07-20;2023-08-05;150.0;20.0;25.0;220.0;false;France;Canada;Terrestre
+8;Électroménager;Réfrigérateur;2023-08-02;2023-08-08;2023-08-25;400.0;40.0;80.0;550.0;false;Japon;Allemagne;Maritime
+9;Livres;Roman policier;2023-09-18;2023-09-25;2023-10-10;30.0;5.0;3.0;50.0;true;Italie;États-Unis;Aérien
+10;Sport;Raquettes de tennis;2023-10-12;2023-10-18;2023-11-02;90.0;15.0;10.0;120.0;false;Australie;France;Terrestre
+11;Électronique;Caméra DSLR;2023-11-25;2023-12-02;2023-12-18;300.0;25.0;60.0;450.0;false;États-Unis;Chine;Aérien
+12;Vêtements;Chaussures de sport;2023-12-10;2023-12-15;2023-12-30;60.0;12.0;15.0;100.0;true;Royaume-Uni;Australie;Maritime
+13;Électroménager;Cafetière;2024-01-05;2024-01-10;2024-01-25;70.0;8.0;20.0;100.0;false;Brésil;Espagne;Terrestre
+14;Livres;Guide de voyage;2024-02-20;2024-02-25;2024-03-10;20.0;5.0;2.0;30.0;true;Canada;Japon;Aérien
+15;Sport;Planche de surf;2024-03-15;2024-03-20;2024-04-05;150.0;30.0;25.0;220.0;false;Australie;États-Unis;Maritime
+16;Électronique;Enceinte Bluetooth;2024-04-08;2024-04-15;2024-04-30;80.0;10.0;15.0;120.0;false;Chine;France;Aérien
+17;Vêtements;Costume formel;2024-05-20;2024-05-25;2024-06-10;100.0;18.0;30.0;160.0;true;Italie;Royaume-Uni;Terrestre
+18;Électroménager;Aspirateur robot;2024-06-03;2024-06-10;2024-06-25;200.0;20.0;40.0;300.0;false;Allemagne;Canada;Maritime
+19;Livres;Biographie;2024-07-15;2024-07-20;2024-08-05;25.0;5.0;3.0;40.0;true;Espagne;Brésil;Aérien
+20;Sport;Tapis de yoga;2024-08-02;2024-08-08;2024-08-25;40.0;8.0;5.0;60.0;false;Japon;Corée du Sud;Terrestre
+21;Électronique;Laptop;2024-09-18;2024-09-25;2024-10-10;600.0;40.0;90.0;750.0;false;Chine;États-Unis;Aérien
+22;Vêtements;Écharpe en laine;2024-10-12;2024-10-18;2024-11-02;20.0;5.0;2.0;30.0;true;France;Italie;Maritime
+23;Électroménager;Fer à repasser;2024-11-05;2024-11-12;2024-11-28;30.0;8.0;5.0;45.0;false;Allemagne;Royaume-Uni;Terrestre
+24;Livres;Dictionnaire multilingue;2024-12-20;2024-12-25;2025-01-10;35.0;5.0;2.0;45.0;true;Espagne;Mexique;Aérien
+25;Sport;Haltères;2025-01-15;2025-01-22;2025-02-06;50.0;10.0;8.0;75.0;false;Canada;Australie;Maritime
+26;Électronique;Imprimante;2025-02-08;2025-02-15;2025-03-02;120.0;15.0;30.0;180.0;true;Corée du Sud;Brésil;Aérien
+27;Vêtements;Jean délavé;2025-03-22;2025-03-28;2025-04-12;40.0;8.0;10.0;60.0;false;Italie;France;Terrestre
+28;Électroménager;Four à micro-ondes;2025-04-10;2025-04-15;2025-04-30;80.0;12.0;15.0;120.0;false;Japon;Allemagne;Maritime
+29;Livres;Livre d'art;2025-05-25;2025-05-30;2025-06-14;60.0;10.0;5.0;80.0;true;Brésil;Espagne;Aérien
+30;Sport;Gants de boxe;2025-06-12;2025-06-18;2025-07-03;35.0;7.0;5.0;50.0;false;Australie;France;Terrestre
+31;Électronique;Lunettes de réalité virtuelle;2025-07-20;2025-07-25;2025-08-09;180.0;15.0;30.0;250.0;false;États-Unis;Chine;Aérien
+32;Vêtements;T-shirt graphique;2025-08-10;2025-08-15;2025-08-30;15.0;4.0;3.0;25.0;true;Royaume-Uni;Australie;Maritime
+33;Électroménager;Batteur électrique;2025-09-25;2025-10-02;2025-10-18;40.0;8.0;10.0;60.0;false;Brésil;Espagne;Terrestre
+34;Livres;Carnet de croquis;2025-10-15;2025-10-20;2025-11-04;25.0;5.0;2.0;35.0;true;Canada;Japon;Aérien
+35;Sport;Ballon de football;2025-11-08;2025-11-15;2025-11-30;30.0;6.0;5.0;45.0;false;Australie;États-Unis;Maritime
+36;Électronique;Montre connectée;2025-12-02;2025-12-10;2025-12-25;120.0;12.0;25.0;160.0;true;Chine;France;Aérien
+37;Vêtements;Chapeau de soleil;2026-01-18;2026-01-25;2026-02-09;18.0;3.0;2.0;25.0;false;Italie;France;Terrestre
+38;Électroménager;Grille-pain;2026-02-05;2026-02-12;2026-02-28;25.0;5.0;5.0;35.0;false;Allemagne;Royaume-Uni;Maritime
+39;Livres;BD humoristique;2026-03-22;2026-03-28;2026-04-12;20.0;4.0;2.0;30.0;true;Espagne;Mexique;Aérien
+40;Sport;Bouteille d'eau réutilisable;2026-04-10;2026-04-15;2026-04-30;10.0;2.0;1.0;15.0;false;Canada;Australie;Terrestre
+41;Électronique;Enceinte intelligente;2026-05-25;2026-05-30;2026-06-14;70.0;8.0;15.0;100.0;true;Corée du Sud;Brésil;Aérien
+42;Vêtements;Chemise à carreaux;2026-06-12;2026-06-18;2026-07-03;35.0;7.0;5.0;50.0;false;Italie;France;Terrestre
+43;Électroménager;Mixeur;2026-07-20;2026-07-25;2026-08-09;45.0;10.0;10.0;65.0;false;Japon;Allemagne;Maritime
+44;Livres;Guide de jardinage;2026-08-10;2026-08-15;2026-08-30;28.0;5.0;3.0;40.0;true;France;Royaume-Uni;Aérien
+45;Sport;Tapis de course;2026-09-25;2026-10-02;2026-10-18;300.0;30.0;50.0;400.0;false;Australie;États-Unis;Maritime
+46;Électronique;Casque antibruit;2026-10-15;2026-10-20;2026-11-04;90.0;10.0;20.0;120.0;true;États-Unis;Chine;Aérien
+47;Vêtements;Jupe en denim;2026-11-08;2026-11-15;2026-11-30;25.0;5.0;5.0;35.0;false;Royaume-Uni;Australie;Terrestre
+48;Électroménager;Robot de cuisine multifonction;2026-12-02;2026-12-10;2026-12-25;150.0;20.0;30.0;200.0;false;Brésil;Espagne;Aérien
+49;Livres;Recueil de poésie contemporaine;2027-01-18;2027-01-25;2027-02-09;30.0;6.0;4.0;45.0;true;Canada;Japon;Maritime
+50;Sport;Sac de sport;2027-02-05;2027-02-12;2027-02-28;20.0;4.0;3.0;30.0;false;Australie;États-Unis;Terrestre
+51;Électronique;Tablette;2027-03-22;2027-03-28;2027-04-12;180.0;15.0;30.0;250.0;false;États-Unis;Chine;Aérien
+52;Vêtements;Chemisier en soie;2027-04-10;2027-04-15;2027-04-30;35.0;8.0;10.0;55.0;true;France;Italie;Maritime
+53;Électroménager;Yaourtière;2027-05-25;2027-05-30;2027-06-14;40.0;8.0;10.0;60.0;false;Brésil;Espagne;Terrestre
+54;Livres;Roman de science-fiction;2027-06-12;2027-06-18;2027-07-03;25.0;5.0;3.0;35.0;true;Canada;Japon;Aérien
+55;Sport;Vélo de montagne;2027-07-20;2027-07-25;2027-08-09;250.0;30.0;40.0;350.0;false;Australie;États-Unis;Maritime
+56;Électronique;Clavier mécanique;2027-08-10;2027-08-15;2027-08-30;80.0;10.0;15.0;120.0;true;Chine;France;Aérien
+57;Vêtements;Short de plage;2027-09-25;2027-10-02;2027-10-18;20.0;4.0;3.0;30.0;false;Italie;France;Terrestre
+58;Électroménager;Machine à glaçons;2027-10-15;2027-10-20;2027-11-04;50.0;8.0;10.0;70.0;false;Allemagne;Royaume-Uni;Maritime
+59;Livres;Album de bande dessinée;2027-11-08;2027-11-15;2027-11-30;15.0;3.0;2.0;20.0;true;Espagne;Mexique;Aérien
+60;Sport;Raquettes de badminton;2027-12-02;2027-12-10;2027-12-25;30.0;6.0;5.0;45.0;false;Australie;France;Terrestre
+61;Électronique;Souris sans fil;2028-01-18;2028-01-25;2028-02-09;15.0;3.0;2.0;25.0;true;Corée du Sud;Brésil;Aérien
+62;Vêtements;Maillot de bain;2028-02-05;2028-02-12;2028-02-28;25.0;5.0;4.0;35.0;false;Italie;Espagne;Maritime
+63;Électroménager;Centrifugeuse;2028-03-22;2028-03-28;2028-04-12;40.0;8.0;10.0;60.0;false;Japon;Allemagne;Terrestre
+64;Livres;Thriller psychologique;2028-04-10;2028-04-15;2028-04-30;30.0;5.0;4.0;45.0;true;France;Royaume-Uni;Aérien
+65;Sport;Sac à dos de randonnée;2028-05-25;2028-05-30;2028-06-14;50.0;10.0;8.0;70.0;false;Australie;États-Unis;Maritime
+66;Électronique;Disque dur externe;2028-06-12;2028-06-18;2028-07-03;90.0;15.0;20.0;130.0;true;États-Unis;Chine;Aérien
+67;Vêtements;Pantalon de jogging;2028-07-20;2028-07-25;2028-08-09;30.0;5.0;3.0;40.0;false;Royaume-Uni;Australie;Terrestre
+68;Électroménager;Grille-pain à convection;2028-08-10;2028-08-15;2028-08-30;60.0;10.0;12.0;85.0;false;Brésil;Espagne;Maritime
+69;Livres;Livre de cuisine végétarienne;2028-09-25;2028-10-02;2028-10-18;25.0;4.0;3.0;35.0;true;Canada;Japon;Aérien
+70;Sport;Gourde isotherme;2028-10-15;2028-10-20;2028-11-04;20.0;3.0;2.0;30.0;false;Australie;États-Unis;Terrestre
+71;Électronique;Écouteurs sans fil;2028-11-08;2028-11-15;2028-11-30;40.0;8.0;10.0;60.0;true;Corée du Sud;France;Aérien
+72;Vêtements;Chemise en lin;2028-12-02;2028-12-10;2028-12-25;45.0;6.0;8.0;65.0;false;Italie;Espagne;Maritime
+73;Électroménager;Cuiseur à riz;2029-01-18;2029-01-25;2029-02-09;30.0;5.0;4.0;45.0;false;Japon;Allemagne;Terrestre
+74;Livres;Essai philosophique;2029-02-05;2029-02-12;2029-02-28;20.0;4.0;3.0;30.0;true;France;Royaume-Uni;Aérien
+75;Sport;Chaussures de randonnée;2029-03-22;2029-03-28;2029-04-12;70.0;10.0;15.0;100.0;false;Canada;États-Unis;Maritime
+76;Électronique;Imprimante 3D;2029-04-10;2029-04-15;2029-04-30;250.0;20.0;40.0;320.0;true;Chine;Allemagne;Aérien
+77;Vêtements;Blouse en coton;2029-05-25;2029-05-30;2029-06-14;25.0;4.0;3.0;35.0;false;Italie;France;Terrestre
+78;Électroménager;Hachoir à viande électrique;2029-06-12;2029-06-18;2029-07-03;40.0;6.0;8.0;60.0;false;Espagne;Mexique;Maritime
+79;Livres;Recueil de nouvelles;2029-07-20;2029-07-25;2029-08-09;18.0;3.0;2.0;25.0;true;Canada;Japon;Aérien
+80;Sport;Gant de baseball;2029-08-10;2029-08-15;2029-08-30;15.0;2.0;2.0;20.0;false;Australie;États-Unis;Terrestre
+81;Électronique;Lampe de bureau LED;2029-09-25;2029-10-02;2029-10-18;30.0;5.0;4.0;45.0;false;Corée du Sud;Brésil;Terrestre
+82;Vêtements;Pull en laine;2029-10-15;2029-10-20;2029-11-04;40.0;8.0;10.0;60.0;true;France;Royaume-Uni;Maritime
+83;Électroménager;Friteuse sans huile;2029-11-08;2029-11-15;2029-11-30;50.0;8.0;12.0;70.0;false;Allemagne;Royaume-Uni;Aérien
+84;Livres;Thriller politique;2029-12-02;2029-12-10;2029-12-25;25.0;4.0;3.0;35.0;true;Espagne;Mexique;Maritime
+85;Sport;Haltères ajustables;2030-01-18;2030-01-25;2030-02-09;70.0;10.0;15.0;100.0;false;Canada;États-Unis;Terrestre
+86;Électronique;Écouteurs antibruit;2030-02-05;2030-02-12;2030-02-28;60.0;8.0;12.0;80.0;false;Japon;Chine;Aérien
+87;Vêtements;Robe d'été;2030-03-22;2030-03-28;2030-04-12;30.0;6.0;5.0;45.0;true;Italie;France;Terrestre
+88;Électroménager;Batteur sur socle;2030-04-10;2030-04-15;2030-04-30;90.0;12.0;20.0;130.0;false;Brésil;Espagne;Maritime
+89;Livres;Livre d'histoire locale;2030-05-25;2030-05-30;2030-06-14;20.0;3.0;2.0;30.0;false;Australie;États-Unis;Aérien
+90;Sport;Tapis de yoga antidérapant;2030-06-12;2030-06-18;2030-07-03;15.0;3.0;2.0;25.0;true;Corée du Sud;Royaume-Uni;Terrestre
+91;Électronique;Stylo connecté;2030-07-20;2030-07-25;2030-08-09;40.0;5.0;8.0;60.0;false;France;Allemagne;Aérien
+92;Vêtements;Chaussettes en bambou;2030-08-10;2030-08-15;2030-08-30;10.0;2.0;1.0;15.0;true;Italie;Espagne;Maritime
+93;Électroménager;Presse-agrumes électrique;2030-09-25;2030-10-02;2030-10-18;25.0;4.0;3.0;35.0;false;Japon;Canada;Terrestre
+94;Livres;Guide de photographie;2030-10-15;2030-10-20;2030-11-04;35.0;5.0;4.0;50.0;true;Espagne;Mexique;Aérien
+95;Sport;Corde à sauter;2030-11-08;2030-11-15;2030-11-30;12.0;2.0;1.0;15.0;false;Canada;Australie;Maritime
+96;Électronique;Chargeur solaire;2030-12-02;2030-12-10;2030-12-25;50.0;8.0;10.0;70.0;false;Australie;États-Unis;Terrestre
+97;Vêtements;Sweat à capuche;2031-01-18;2031-01-25;2031-02-09;30.0;6.0;5.0;45.0;true;Royaume-Uni;France;Aérien
+98;Électroménager;Robot aspirateur;2031-02-05;2031-02-12;2031-02-28;120.0;15.0;25.0;160.0;false;Chine;Allemagne;Maritime
+99;Livres;Essai scientifique;2031-03-22;2031-03-28;2031-04-12;28.0;5.0;4.0;40.0;false;France;Japon;Terrestre
+100;Sport;Gant de musculation;2031-04-10;2031-04-15;2031-04-30;18.0;3.0;2.0;25.0;true;Brésil;Australie;Aérien
