@@ -31,10 +31,10 @@ public class StormSimulation implements ISimulateEvent, IPluginInterface {
         
         taxes = differenceInDays / (100.0f);
         
-        newProductionCost = production.get_ht(commande, taxes);
+        newProductionCost = production.get_ttc(commande, taxes) + interval/10000000;
     	newCommande.setProduction_cost(newProductionCost);
     	
-    	newTransportationCost = transportation.get_ht(commande, taxes);
+    	newTransportationCost = transportation.get_ttc(commande, taxes)  + interval/10000000;
     	newCommande.setTransportation_cost(newTransportationCost);
         
 		
