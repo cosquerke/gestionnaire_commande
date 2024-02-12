@@ -14,7 +14,7 @@ import interfaces.ISimulateEvent;
 public class StrikeSimulation implements ISimulateEvent, IPluginInterface {
 
 	@Override
-	public List<Commande> executePlugin(List<Commande> listeCommande) {
+	public List<Commande> executePlugin(List<Commande> listeCommande, Integer min, Integer max) {
 		// TODO Auto-generated method stub
 		List<Commande> returnList = new ArrayList<Commande>();
 		
@@ -25,7 +25,7 @@ public class StrikeSimulation implements ISimulateEvent, IPluginInterface {
 				// Objet ICost Transportation ou Production
 				ICost transportation = new TransportationCost();
 				ICost production = new ProductionCost();
-				Commande cmdTmp = this.getEventImpact(c, strikeEvent, transportation, production, 0, 10);
+				Commande cmdTmp = this.getEventImpact(c, strikeEvent, transportation, production, min, max);
 				returnList.add(cmdTmp);
 			}else {
 				returnList.add(c);
