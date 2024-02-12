@@ -62,6 +62,11 @@ public class Main {
 
             List<PluginDescriptor> importerDescriptors = loader.getPluginDescriptorsForInterface(CommandeImporterInterface.class);
 
+            if (importerDescriptors.isEmpty()) {
+                System.out.println("Il est nécessaire d'avoir au moins un plugin import pour faire fonctionner l'application.");
+                System.exit(0);
+            }
+
             for (PluginDescriptor descriptor : importerDescriptors) {
                 JButton button = new JButton(descriptor.description());
                 button.addActionListener(e -> {
